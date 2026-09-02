@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "internship-monitor"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = ["httpx==0.28.1", "PyYAML==6.0.2", "beautifulsoup4==4.13.4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+

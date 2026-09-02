@@ -1,0 +1,2050 @@
+# Registry policy: enabled entries have a configured structured collector.
+# Disabled entries are reputable seed candidates awaiting ATS verification via scripts/discover_ats.py.
+companies:
+  - name: "Google"
+    career_url: "https://www.google.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Microsoft"
+    career_url: "https://www.microsoft.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Apple"
+    career_url: "https://www.apple.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Amazon"
+    career_url: "https://www.amazon.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Meta"
+    career_url: "https://www.meta.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Netflix"
+    career_url: "https://jobs.netflix.com/"
+    ats: lever
+    ats_identifier: "netflix"
+    tier: elite
+    enabled: false
+  - name: "NVIDIA"
+    career_url: "https://www.nvidia.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Adobe"
+    career_url: "https://www.adobe.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Salesforce"
+    career_url: "https://www.salesforce.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Oracle"
+    career_url: "https://www.oracle.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "IBM"
+    career_url: "https://www.ibm.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cisco"
+    career_url: "https://www.cisco.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Uber"
+    career_url: "https://www.uber.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Lyft"
+    career_url: "https://www.lyft.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Airbnb"
+    career_url: "https://www.airbnb.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Dropbox"
+    career_url: "https://www.dropbox.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Snap"
+    career_url: "https://www.snap.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Pinterest"
+    career_url: "https://www.pinterest.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "LinkedIn"
+    career_url: "https://www.linkedin.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "TikTok"
+    career_url: "https://www.tiktok.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "ByteDance"
+    career_url: "https://www.bytedance.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Reddit"
+    career_url: "https://www.reddit.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Roblox"
+    career_url: "https://www.roblox.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "DoorDash"
+    career_url: "https://www.doordash.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Instacart"
+    career_url: "https://www.instacart.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Spotify"
+    career_url: "https://www.spotify.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Block"
+    career_url: "https://www.block.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "PayPal"
+    career_url: "https://www.paypal.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "eBay"
+    career_url: "https://www.ebay.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Coinbase"
+    career_url: "https://www.coinbase.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Datadog"
+    career_url: "https://careers.datadoghq.com/"
+    ats: greenhouse
+    ats_identifier: "datadog"
+    tier: high
+    enabled: true
+  - name: "Cloudflare"
+    career_url: "https://www.cloudflare.com/careers/jobs/"
+    ats: greenhouse
+    ats_identifier: "cloudflare"
+    tier: high
+    enabled: true
+  - name: "Snowflake"
+    career_url: "https://www.snowflake.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "MongoDB"
+    career_url: "https://www.mongodb.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Confluent"
+    career_url: "https://www.confluent.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Elastic"
+    career_url: "https://www.elastic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "HashiCorp"
+    career_url: "https://www.hashicorp.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "GitHub"
+    career_url: "https://www.github.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "GitLab"
+    career_url: "https://www.gitlab.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Atlassian"
+    career_url: "https://www.atlassian.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Twilio"
+    career_url: "https://www.twilio.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Okta"
+    career_url: "https://www.okta.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Zoom"
+    career_url: "https://www.zoom.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Slack"
+    career_url: "https://www.slack.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "ServiceNow"
+    career_url: "https://www.servicenow.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Workday"
+    career_url: "https://www.workday.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "HubSpot"
+    career_url: "https://www.hubspot.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Shopify"
+    career_url: "https://www.shopify.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Stripe"
+    career_url: "https://stripe.com/jobs/search"
+    ats: greenhouse
+    ats_identifier: "stripe"
+    tier: elite
+    enabled: true
+  - name: "Plaid"
+    career_url: "https://plaid.com/careers/"
+    ats: lever
+    ats_identifier: "plaid"
+    tier: high
+    enabled: false
+  - name: "OpenAI"
+    career_url: "https://www.openai.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Anthropic"
+    career_url: "https://www.anthropic.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Scale AI"
+    career_url: "https://www.scaleai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cohere"
+    career_url: "https://www.cohere.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Hugging Face"
+    career_url: "https://www.huggingface.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Perplexity"
+    career_url: "https://www.perplexity.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Mistral AI"
+    career_url: "https://www.mistralai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Adept"
+    career_url: "https://www.adept.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Glean"
+    career_url: "https://www.glean.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Together AI"
+    career_url: "https://www.togetherai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "CoreWeave"
+    career_url: "https://www.coreweave.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lambda"
+    career_url: "https://www.lambda.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Groq"
+    career_url: "https://www.groq.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cerebras"
+    career_url: "https://www.cerebras.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SambaNova"
+    career_url: "https://www.sambanova.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "DataRobot"
+    career_url: "https://www.datarobot.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Weights & Biases"
+    career_url: "https://www.weightsandbiases.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Runway"
+    career_url: "https://www.runway.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Character AI"
+    career_url: "https://www.characterai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "ElevenLabs"
+    career_url: "https://www.elevenlabs.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Pinecone"
+    career_url: "https://www.pinecone.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Vercel"
+    career_url: "https://vercel.com/careers"
+    ats: ashby
+    ats_identifier: "vercel"
+    tier: high
+    enabled: false
+  - name: "Replit"
+    career_url: "https://www.replit.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Retool"
+    career_url: "https://www.retool.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Notion"
+    career_url: "https://www.notion.com/careers"
+    ats: ashby
+    ats_identifier: "notion"
+    tier: high
+    enabled: true
+  - name: "Figma"
+    career_url: "https://www.figma.com/careers/"
+    ats: greenhouse
+    ats_identifier: "figma"
+    tier: high
+    enabled: true
+  - name: "Canva"
+    career_url: "https://www.canva.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Airtable"
+    career_url: "https://www.airtable.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Asana"
+    career_url: "https://www.asana.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Monday.com"
+    career_url: "https://www.mondaycom.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Smartsheet"
+    career_url: "https://www.smartsheet.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Box"
+    career_url: "https://www.box.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "DocuSign"
+    career_url: "https://www.docusign.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Dropbox Sign"
+    career_url: "https://www.dropboxsign.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Grammarly"
+    career_url: "https://www.grammarly.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Duolingo"
+    career_url: "https://careers.duolingo.com/"
+    ats: greenhouse
+    ats_identifier: "duolingo"
+    tier: target
+    enabled: true
+  - name: "Coursera"
+    career_url: "https://www.coursera.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Udemy"
+    career_url: "https://www.udemy.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Chegg"
+    career_url: "https://www.chegg.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Khan Academy"
+    career_url: "https://www.khanacademy.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Quizlet"
+    career_url: "https://www.quizlet.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Discord"
+    career_url: "https://discord.com/careers"
+    ats: greenhouse
+    ats_identifier: "discord"
+    tier: high
+    enabled: true
+  - name: "Twitch"
+    career_url: "https://www.twitch.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Epic Games"
+    career_url: "https://www.epicgames.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Riot Games"
+    career_url: "https://www.riotgames.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Electronic Arts"
+    career_url: "https://www.electronicarts.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Unity"
+    career_url: "https://www.unity.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Niantic"
+    career_url: "https://www.niantic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Valve"
+    career_url: "https://www.valve.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Palantir"
+    career_url: "https://www.palantir.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Anduril"
+    career_url: "https://www.anduril.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "SpaceX"
+    career_url: "https://www.spacex.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Blue Origin"
+    career_url: "https://www.blueorigin.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Rocket Lab"
+    career_url: "https://www.rocketlab.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Relativity Space"
+    career_url: "https://www.relativityspace.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Varda Space"
+    career_url: "https://www.vardaspace.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Axiom Space"
+    career_url: "https://www.axiomspace.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Sierra Space"
+    career_url: "https://www.sierraspace.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Shield AI"
+    career_url: "https://www.shieldai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Skydio"
+    career_url: "https://www.skydio.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Saronic"
+    career_url: "https://www.saronic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Epirus"
+    career_url: "https://www.epirus.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Astranis"
+    career_url: "https://www.astranis.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Planet Labs"
+    career_url: "https://www.planetlabs.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Maxar"
+    career_url: "https://www.maxar.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Northrop Grumman"
+    career_url: "https://www.northropgrumman.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lockheed Martin"
+    career_url: "https://www.lockheedmartin.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "RTX"
+    career_url: "https://www.rtx.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Boeing"
+    career_url: "https://www.boeing.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "General Dynamics"
+    career_url: "https://www.generaldynamics.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "L3Harris"
+    career_url: "https://www.l3harris.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "BAE Systems"
+    career_url: "https://www.baesystems.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Leidos"
+    career_url: "https://www.leidos.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "CACI"
+    career_url: "https://www.caci.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SAIC"
+    career_url: "https://www.saic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Booz Allen Hamilton"
+    career_url: "https://www.boozallenhamilton.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "MITRE"
+    career_url: "https://www.mitre.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tesla"
+    career_url: "https://www.tesla.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Rivian"
+    career_url: "https://www.rivian.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lucid Motors"
+    career_url: "https://www.lucidmotors.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Waymo"
+    career_url: "https://www.waymo.com/careers"
+    ats: unknown
+    tier: high
+    enabled: false
+  - name: "Cruise"
+    career_url: "https://www.cruise.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Zoox"
+    career_url: "https://www.zoox.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Aurora Innovation"
+    career_url: "https://www.aurorainnovation.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Nuro"
+    career_url: "https://www.nuro.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Motional"
+    career_url: "https://www.motional.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Kodiak Robotics"
+    career_url: "https://www.kodiakrobotics.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Waabi"
+    career_url: "https://www.waabi.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "May Mobility"
+    career_url: "https://www.maymobility.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Applied Intuition"
+    career_url: "https://www.appliedintuition.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Toyota Research Institute"
+    career_url: "https://www.toyotaresearchinstitute.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ford"
+    career_url: "https://www.ford.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "General Motors"
+    career_url: "https://www.generalmotors.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Stellantis"
+    career_url: "https://www.stellantis.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Mercedes-Benz"
+    career_url: "https://www.mercedesbenz.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "BMW"
+    career_url: "https://www.bmw.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Volvo Cars"
+    career_url: "https://www.volvocars.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "John Deere"
+    career_url: "https://www.johndeere.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Caterpillar"
+    career_url: "https://www.caterpillar.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Honeywell"
+    career_url: "https://www.honeywell.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Siemens"
+    career_url: "https://www.siemens.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "GE Aerospace"
+    career_url: "https://www.geaerospace.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "GE Vernova"
+    career_url: "https://www.gevernova.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Rockwell Automation"
+    career_url: "https://www.rockwellautomation.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Emerson"
+    career_url: "https://www.emerson.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Bosch"
+    career_url: "https://www.bosch.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "ABB"
+    career_url: "https://www.abb.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Intel"
+    career_url: "https://www.intel.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "AMD"
+    career_url: "https://www.amd.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Qualcomm"
+    career_url: "https://www.qualcomm.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Broadcom"
+    career_url: "https://www.broadcom.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Micron"
+    career_url: "https://www.micron.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Texas Instruments"
+    career_url: "https://www.texasinstruments.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Analog Devices"
+    career_url: "https://www.analogdevices.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Arm"
+    career_url: "https://www.arm.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Synopsys"
+    career_url: "https://www.synopsys.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cadence"
+    career_url: "https://www.cadence.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Marvell"
+    career_url: "https://www.marvell.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Applied Materials"
+    career_url: "https://www.appliedmaterials.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lam Research"
+    career_url: "https://www.lamresearch.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "KLA"
+    career_url: "https://www.kla.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "ASML"
+    career_url: "https://www.asml.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "GlobalFoundries"
+    career_url: "https://www.globalfoundries.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Western Digital"
+    career_url: "https://www.westerndigital.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Seagate"
+    career_url: "https://www.seagate.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Samsung Semiconductor"
+    career_url: "https://www.samsungsemiconductor.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "TSMC Arizona"
+    career_url: "https://www.tsmcarizona.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SiFive"
+    career_url: "https://www.sifive.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tenstorrent"
+    career_url: "https://www.tenstorrent.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lightmatter"
+    career_url: "https://www.lightmatter.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Celestial AI"
+    career_url: "https://www.celestialai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "JPMorgan Chase"
+    career_url: "https://www.jpmorganchase.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Goldman Sachs"
+    career_url: "https://www.goldmansachs.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Morgan Stanley"
+    career_url: "https://www.morganstanley.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Bank of America"
+    career_url: "https://www.bankofamerica.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Capital One"
+    career_url: "https://www.capitalone.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Citigroup"
+    career_url: "https://www.citigroup.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Wells Fargo"
+    career_url: "https://www.wellsfargo.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "American Express"
+    career_url: "https://www.americanexpress.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Visa"
+    career_url: "https://www.visa.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Mastercard"
+    career_url: "https://www.mastercard.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Discover"
+    career_url: "https://www.discover.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Fidelity Investments"
+    career_url: "https://www.fidelityinvestments.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Charles Schwab"
+    career_url: "https://www.charlesschwab.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Vanguard"
+    career_url: "https://www.vanguard.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "BlackRock"
+    career_url: "https://www.blackrock.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "State Street"
+    career_url: "https://www.statestreet.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "BNY"
+    career_url: "https://www.bny.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Nasdaq"
+    career_url: "https://www.nasdaq.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Intercontinental Exchange"
+    career_url: "https://www.intercontinentalexchange.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Robinhood"
+    career_url: "https://www.robinhood.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SoFi"
+    career_url: "https://www.sofi.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Chime"
+    career_url: "https://www.chime.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Brex"
+    career_url: "https://www.brex.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ramp"
+    career_url: "https://ramp.com/careers"
+    ats: ashby
+    ats_identifier: "ramp"
+    tier: high
+    enabled: true
+  - name: "Affirm"
+    career_url: "https://www.affirm.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Klarna"
+    career_url: "https://www.klarna.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Marqeta"
+    career_url: "https://www.marqeta.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Adyen"
+    career_url: "https://www.adyen.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Toast"
+    career_url: "https://www.toast.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Bill"
+    career_url: "https://www.bill.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Intuit"
+    career_url: "https://www.intuit.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Bloomberg"
+    career_url: "https://www.bloomberg.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "FactSet"
+    career_url: "https://www.factset.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "S&P Global"
+    career_url: "https://www.sandpglobal.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Moody's"
+    career_url: "https://www.moodys.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Jane Street"
+    career_url: "https://www.janestreet.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Hudson River Trading"
+    career_url: "https://www.hudsonrivertrading.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Citadel"
+    career_url: "https://www.citadel.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Citadel Securities"
+    career_url: "https://www.citadelsecurities.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Two Sigma"
+    career_url: "https://www.twosigma.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "D. E. Shaw"
+    career_url: "https://www.deshaw.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Jump Trading"
+    career_url: "https://www.jumptrading.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Optiver"
+    career_url: "https://www.optiver.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "IMC Trading"
+    career_url: "https://www.imctrading.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "DRW"
+    career_url: "https://www.drw.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Akuna Capital"
+    career_url: "https://www.akunacapital.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SIG"
+    career_url: "https://www.sig.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Five Rings"
+    career_url: "https://www.fiverings.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tower Research"
+    career_url: "https://www.towerresearch.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Virtu Financial"
+    career_url: "https://www.virtufinancial.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Aquatic Capital Management"
+    career_url: "https://www.aquaticcapitalmanagement.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Radix Trading"
+    career_url: "https://www.radixtrading.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Belvedere Trading"
+    career_url: "https://www.belvederetrading.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Old Mission"
+    career_url: "https://www.oldmission.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Headlands Technologies"
+    career_url: "https://www.headlandstechnologies.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Voleon"
+    career_url: "https://www.voleon.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Point72"
+    career_url: "https://www.point72.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Millennium Management"
+    career_url: "https://www.millenniummanagement.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "AQR Capital Management"
+    career_url: "https://www.aqrcapitalmanagement.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Bridgewater Associates"
+    career_url: "https://www.bridgewaterassociates.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Schonfeld"
+    career_url: "https://www.schonfeld.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "CrowdStrike"
+    career_url: "https://www.crowdstrike.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Palo Alto Networks"
+    career_url: "https://www.paloaltonetworks.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Zscaler"
+    career_url: "https://www.zscaler.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SentinelOne"
+    career_url: "https://www.sentinelone.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Fortinet"
+    career_url: "https://www.fortinet.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cloudstrike"
+    career_url: "https://www.cloudstrike.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Wiz"
+    career_url: "https://www.wiz.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Snyk"
+    career_url: "https://www.snyk.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tanium"
+    career_url: "https://www.tanium.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Rapid7"
+    career_url: "https://www.rapid7.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tenable"
+    career_url: "https://www.tenable.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Proofpoint"
+    career_url: "https://www.proofpoint.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Abnormal Security"
+    career_url: "https://www.abnormalsecurity.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Arctic Wolf"
+    career_url: "https://www.arcticwolf.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Huntress"
+    career_url: "https://www.huntress.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "1Password"
+    career_url: "https://www.1password.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Duo Security"
+    career_url: "https://www.duosecurity.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Netskope"
+    career_url: "https://www.netskope.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Illumio"
+    career_url: "https://www.illumio.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Rubrik"
+    career_url: "https://www.rubrik.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Vanta"
+    career_url: "https://www.vanta.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Drata"
+    career_url: "https://www.drata.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Chainguard"
+    career_url: "https://www.chainguard.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Akamai"
+    career_url: "https://www.akamai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Fastly"
+    career_url: "https://www.fastly.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "F5"
+    career_url: "https://www.f5.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "McKesson"
+    career_url: "https://www.mckesson.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "UnitedHealth Group"
+    career_url: "https://www.unitedhealthgroup.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Optum"
+    career_url: "https://www.optum.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Humana"
+    career_url: "https://www.humana.com/careers"
+    ats: unknown
+    tier: baseline
+    enabled: false
+  - name: "CVS Health"
+    career_url: "https://www.cvshealth.com/careers"
+    ats: unknown
+    tier: baseline
+    enabled: false
+  - name: "Elevance Health"
+    career_url: "https://www.elevancehealth.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cigna"
+    career_url: "https://www.cigna.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Centene"
+    career_url: "https://www.centene.com/careers"
+    ats: unknown
+    tier: baseline
+    enabled: false
+  - name: "Epic Systems"
+    career_url: "https://www.epicsystems.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Oracle Health"
+    career_url: "https://www.oraclehealth.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Veeva Systems"
+    career_url: "https://www.veevasystems.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Doximity"
+    career_url: "https://www.doximity.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Oscar Health"
+    career_url: "https://www.oscarhealth.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ro"
+    career_url: "https://www.ro.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Hims & Hers"
+    career_url: "https://www.himsandhers.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tempus AI"
+    career_url: "https://www.tempusai.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Flatiron Health"
+    career_url: "https://www.flatironhealth.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Verily"
+    career_url: "https://www.verily.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Moderna"
+    career_url: "https://www.moderna.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Illumina"
+    career_url: "https://www.illumina.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Guardant Health"
+    career_url: "https://www.guardanthealth.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Natera"
+    career_url: "https://www.natera.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Medtronic"
+    career_url: "https://www.medtronic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Stryker"
+    career_url: "https://www.stryker.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Boston Scientific"
+    career_url: "https://www.bostonscientific.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Dexcom"
+    career_url: "https://www.dexcom.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Intuitive Surgical"
+    career_url: "https://www.intuitivesurgical.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Walmart"
+    career_url: "https://www.walmart.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Target"
+    career_url: "https://www.target.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Costco"
+    career_url: "https://www.costco.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Home Depot"
+    career_url: "https://www.homedepot.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lowe's"
+    career_url: "https://www.lowes.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Nike"
+    career_url: "https://www.nike.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Starbucks"
+    career_url: "https://www.starbucks.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "McDonald's"
+    career_url: "https://www.mcdonalds.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Chipotle"
+    career_url: "https://www.chipotle.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Yum Brands"
+    career_url: "https://www.yumbrands.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Procter & Gamble"
+    career_url: "https://www.procterandgamble.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "PepsiCo"
+    career_url: "https://www.pepsico.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Coca-Cola"
+    career_url: "https://www.cocacola.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Disney"
+    career_url: "https://www.disney.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Warner Bros. Discovery"
+    career_url: "https://www.warnerbrosdiscovery.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Comcast"
+    career_url: "https://www.comcast.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Paramount"
+    career_url: "https://www.paramount.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "The New York Times"
+    career_url: "https://www.thenewyorktimes.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Thomson Reuters"
+    career_url: "https://www.thomsonreuters.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Expedia"
+    career_url: "https://www.expedia.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Booking Holdings"
+    career_url: "https://www.bookingholdings.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tripadvisor"
+    career_url: "https://www.tripadvisor.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Marriott"
+    career_url: "https://www.marriott.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Hilton"
+    career_url: "https://www.hilton.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Delta Air Lines"
+    career_url: "https://www.deltaairlines.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "United Airlines"
+    career_url: "https://www.unitedairlines.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "American Airlines"
+    career_url: "https://www.americanairlines.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Southwest Airlines"
+    career_url: "https://www.southwestairlines.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "FedEx"
+    career_url: "https://www.fedex.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "UPS"
+    career_url: "https://www.ups.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Procore"
+    career_url: "https://www.procore.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Autodesk"
+    career_url: "https://www.autodesk.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Bentley Systems"
+    career_url: "https://www.bentleysystems.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Trimble"
+    career_url: "https://www.trimble.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "PTC"
+    career_url: "https://www.ptc.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ansys"
+    career_url: "https://www.ansys.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "MathWorks"
+    career_url: "https://www.mathworks.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SAS"
+    career_url: "https://www.sas.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Teradata"
+    career_url: "https://www.teradata.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Alteryx"
+    career_url: "https://www.alteryx.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "UiPath"
+    career_url: "https://www.uipath.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Automation Anywhere"
+    career_url: "https://www.automationanywhere.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Celonis"
+    career_url: "https://www.celonis.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Databricks"
+    career_url: "https://www.databricks.com/careers"
+    ats: unknown
+    tier: elite
+    enabled: false
+  - name: "Cloudera"
+    career_url: "https://www.cloudera.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Cockroach Labs"
+    career_url: "https://www.cockroachlabs.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Redis"
+    career_url: "https://www.redis.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Neo4j"
+    career_url: "https://www.neo4j.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SingleStore"
+    career_url: "https://www.singlestore.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "PlanetScale"
+    career_url: "https://www.planetscale.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Supabase"
+    career_url: "https://www.supabase.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Postman"
+    career_url: "https://www.postman.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Sentry"
+    career_url: "https://www.sentry.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Grafana Labs"
+    career_url: "https://www.grafanalabs.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "New Relic"
+    career_url: "https://www.newrelic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Dynatrace"
+    career_url: "https://www.dynatrace.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Splunk"
+    career_url: "https://www.splunk.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Sumo Logic"
+    career_url: "https://www.sumologic.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "PagerDuty"
+    career_url: "https://www.pagerduty.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "LaunchDarkly"
+    career_url: "https://www.launchdarkly.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "CircleCI"
+    career_url: "https://www.circleci.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Docker"
+    career_url: "https://www.docker.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Kong"
+    career_url: "https://www.kong.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Tailscale"
+    career_url: "https://www.tailscale.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Netlify"
+    career_url: "https://www.netlify.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "DigitalOcean"
+    career_url: "https://www.digitalocean.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "OVHcloud"
+    career_url: "https://www.ovhcloud.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Equinix"
+    career_url: "https://www.equinix.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Pure Storage"
+    career_url: "https://www.purestorage.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "NetApp"
+    career_url: "https://www.netapp.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Nutanix"
+    career_url: "https://www.nutanix.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "VMware"
+    career_url: "https://www.vmware.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Broadcom Software"
+    career_url: "https://www.broadcomsoftware.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Rippling"
+    career_url: "https://www.rippling.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Deel"
+    career_url: "https://www.deel.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Gusto"
+    career_url: "https://www.gusto.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Carta"
+    career_url: "https://www.carta.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Mercury"
+    career_url: "https://www.mercury.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Navan"
+    career_url: "https://www.navan.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lattice"
+    career_url: "https://www.lattice.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Greenhouse Software"
+    career_url: "https://www.greenhousesoftware.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Lever"
+    career_url: "https://www.lever.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ashby"
+    career_url: "https://www.ashby.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ripcord"
+    career_url: "https://www.ripcord.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Ironclad"
+    career_url: "https://www.ironclad.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Clio"
+    career_url: "https://www.clio.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Relativity"
+    career_url: "https://www.relativity.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Qualtrics"
+    career_url: "https://www.qualtrics.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Sprout Social"
+    career_url: "https://www.sproutsocial.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Yext"
+    career_url: "https://www.yext.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Zillow"
+    career_url: "https://www.zillow.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Redfin"
+    career_url: "https://www.redfin.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Compass"
+    career_url: "https://www.compass.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Opendoor"
+    career_url: "https://www.opendoor.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Flexport"
+    career_url: "https://www.flexport.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Convoy"
+    career_url: "https://www.convoy.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Samsara"
+    career_url: "https://www.samsara.com/company/careers/roles"
+    ats: greenhouse
+    ats_identifier: "samsara"
+    tier: high
+    enabled: true
+  - name: "Motive"
+    career_url: "https://www.motive.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Geotab"
+    career_url: "https://www.geotab.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "FourKites"
+    career_url: "https://www.fourkites.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Project44"
+    career_url: "https://www.project44.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Zipline"
+    career_url: "https://www.zipline.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Gopuff"
+    career_url: "https://www.gopuff.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Grubhub"
+    career_url: "https://www.grubhub.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "StubHub"
+    career_url: "https://www.stubhub.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "SeatGeek"
+    career_url: "https://www.seatgeek.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "FanDuel"
+    career_url: "https://www.fanduel.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "DraftKings"
+    career_url: "https://www.draftkings.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "The Trade Desk"
+    career_url: "https://www.thetradedesk.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Magnite"
+    career_url: "https://www.magnite.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "AppLovin"
+    career_url: "https://www.applovin.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
+  - name: "Roku"
+    career_url: "https://www.roku.com/careers"
+    ats: unknown
+    tier: target
+    enabled: false
