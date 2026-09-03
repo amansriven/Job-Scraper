@@ -1,6 +1,6 @@
 # Internship Monitor
 
-A no-UI, personal internship monitoring service. One invocation scans all enabled companies, normalizes jobs, applies deterministic U.S. technical-internship rules, stores results in SQLite, and sends Discord alerts only for newly discovered matches.
+A no-UI, personal internship monitoring service. One invocation scans all enabled companies, normalizes jobs, applies deterministic U.S. technical-internship rules, stores results in SQLite or PostgreSQL, and sends Discord alerts only for newly discovered matches.
 
 ## Quick start
 
@@ -17,6 +17,15 @@ DRY_RUN=true python -m app.main
 ```
 
 Set `DISCORD_WEBHOOK_URL`, then schedule `python -m app.main` every 30–60 minutes using cron, Railway, Render, GitHub Actions, or another external scheduler. The application deliberately performs one scan and exits. With SQLite, persist the `data/` directory; use a single scheduled instance to avoid concurrent writers.
+
+## GitHub Actions with Neon
+
+The workflow in `.github/workflows/monitor.yml` runs at minutes 7 and 37 of every hour. The offset avoids the busiest top-of-hour scheduling window. Create a Neon PostgreSQL project, then add these repository secrets under **Settings → Secrets and variables → Actions**:
+
+- `DATABASE_URL`: Neon’s pooled connection string, including `sslmode=require`
+- `DISCORD_WEBHOOK_URL`: your Discord channel webhook URL
+
+Push the repository, open **Actions → Internship monitor**, and use **Run workflow** once to initialize the schema and verify the integration. Subsequent scheduled runs reuse PostgreSQL for durable deduplication. The workflow has a concurrency lock, read-only repository permissions, and a 20-minute timeout.
 
 ## Registry policy
 
@@ -41,16 +50,15 @@ Jobs are unique by `(source, external_id)`, with a normalized company/title/loca
 
 ## Operations
 
-- Back up `data/internships.db` and persist it across deployments.
+- Back up `data/internships.db` for local SQLite deployments. Hosted GitHub Actions runs should use PostgreSQL.
 - Alert on growing `collector_health.consecutive_failures` values.
 - Run `python scripts/validate_companies.py` in CI after registry edits.
 - Use `DRY_RUN=true` for first scans. It records matches but does not send webhooks; use a fresh test database if you later want those same findings to alert.
 - A company failure is isolated; the rest of the run continues.
-- The persistence class isolates SQLite-specific code, providing a clear seam for a future PostgreSQL adapter.
+- SQLite and PostgreSQL share the same persistence contract; select them through `DATABASE_URL`.
 
 ## Tests
 
 ```bash
 pytest -q
 ```
-

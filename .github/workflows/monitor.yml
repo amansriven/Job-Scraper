@@ -1,0 +1,36 @@
+name: Internship monitor
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: internship-monitor-production
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      SCRAPER_CONCURRENCY: "12"
+      PER_DOMAIN_CONCURRENCY: "2"
+      REQUEST_TIMEOUT_SECONDS: "25"
+      HTTP_RETRIES: "3"
+      MINIMUM_TIER: baseline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Validate configuration
+        run: python scripts/validate_companies.py
+      - name: Run monitor
+        run: python -m app.main

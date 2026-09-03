@@ -62,6 +62,7 @@ async def run(settings: Settings) -> Stats:
     try:
         await asyncio.gather(*(scan(c) for c in companies))
     finally:
+        db.close()
         await http.close()
     elapsed = time.monotonic() - started
     log.info("Run summary | Companies checked: %d | Successful: %d | Failed: %d | Jobs fetched: %d | "
