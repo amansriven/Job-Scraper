@@ -191,9 +191,11 @@ companies:
     enabled: false
   - name: "GitHub"
     career_url: "https://www.github.com/careers"
-    ats: unknown
+    ats: jibe
     tier: target
-    enabled: false
+    enabled: true
+    config:
+      api_base: "https://www.github.careers"
   - name: "GitLab"
     career_url: "https://www.gitlab.com/careers"
     ats: unknown
@@ -683,9 +685,11 @@ companies:
     enabled: false
   - name: "Rivian"
     career_url: "https://www.rivian.com/careers"
-    ats: unknown
+    ats: jibe
     tier: target
-    enabled: false
+    enabled: true
+    config:
+      api_base: "https://careers.rivian.com"
   - name: "Lucid Motors"
     career_url: "https://www.lucidmotors.com/careers"
     ats: unknown
@@ -1173,9 +1177,13 @@ companies:
     enabled: false
   - name: "Moody's"
     career_url: "https://www.moodys.com/careers"
-    ats: unknown
+    ats: successfactors
     tier: target
-    enabled: false
+    enabled: true
+    config:
+      base_url: "https://careers.moodys.com"
+      search_prefix: "/en/search-jobs"
+      organization_id: "49841"
   - name: "Jane Street"
     career_url: "https://www.janestreet.com/careers"
     ats: unknown
@@ -2009,9 +2017,13 @@ companies:
     enabled: false
   - name: "NetApp"
     career_url: "https://www.netapp.com/careers"
-    ats: unknown
+    ats: successfactors
     tier: target
-    enabled: false
+    enabled: true
+    config:
+      base_url: "https://careers.netapp.com"
+      search_prefix: "/search-jobs"
+      organization_id: "27600"
   - name: "Nutanix"
     career_url: "https://www.nutanix.com/careers"
     ats: unknown

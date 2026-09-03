@@ -20,6 +20,10 @@ def main() -> None:
             errors.append(f"{c.name}: unsupported enabled ATS {c.ats}")
         if c.enabled and c.ats in {"greenhouse", "lever", "ashby", "smartrecruiters"} and not c.ats_identifier:
             errors.append(f"{c.name}: missing ats_identifier")
+        if c.enabled and c.ats == "jibe" and not c.config.get("api_base"):
+            errors.append(f"{c.name}: Jibe collector missing config.api_base")
+        if c.enabled and c.ats == "successfactors" and not c.config.get("organization_id"):
+            errors.append(f"{c.name}: SuccessFactors collector missing config.organization_id")
         if c.enabled and c.ats in {"generic", "custom"} and not c.config.get("job_selector"):
             errors.append(f"{c.name}: generic collector missing job_selector")
     counts = Counter(c.ats for c in companies)

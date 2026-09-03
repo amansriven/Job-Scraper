@@ -2,6 +2,7 @@ import httpx
 import pytest
 
 from app.collectors.greenhouse import GreenhouseCollector
+from app.collectors.jibe import JibeCollector
 from app.collectors.workday import WorkdayCollector
 from app.models import Company
 
@@ -49,3 +50,23 @@ async def test_workday_filters_substring_false_positives_before_details():
     assert [job.external_id for job in jobs] == ["R1"]
     assert len(http.detail_urls) == 1
     assert http.detail_urls[0].endswith("/job/R1")
+
+
+class FakeJibeHttp:
+    async def get(self, url, **kwargs):
+        return httpx.Response(200, json={"totalCount": 2, "jobs": [
+            {"data": {"req_id": "J1", "title": "Machine Learning Intern", "full_location": "Austin, Texas",
+                      "description": "Build Python systems", "apply_url": "https://example.com/J1",
+                      "posted_date": "2026-09-03T08:00:00+0000"}},
+            {"data": {"req_id": "J2", "title": "International Sales Lead", "description": "Sales"}},
+        ]})
+
+
+@pytest.mark.asyncio
+async def test_jibe_normalizes_and_filters_titles():
+    company = Company("Acme", "https://careers.example.com", "jibe", config={
+        "api_base": "https://careers.example.com", "search_terms": ["intern"], "page_size": 100,
+    })
+    jobs = await JibeCollector(FakeJibeHttp()).fetch_jobs(company)
+    assert [job.external_id for job in jobs] == ["J1"]
+    assert jobs[0].posted_at.isoformat() == "2026-09-03T08:00:00+00:00"
