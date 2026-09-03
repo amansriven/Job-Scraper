@@ -38,7 +38,7 @@ async def run(settings: Settings) -> Stats:
                 stats.successful += 1; stats.fetched += len(jobs)
                 candidates = 0; matched = 0; new_count = 0
                 for job in jobs:
-                    result = evaluate(job, company, settings.minimum_tier)
+                    result = evaluate(job, company, settings.minimum_tier, settings.max_posting_age_hours)
                     lowered_title = job.title.lower()
                     if any(x in lowered_title for x in ("intern", "co-op", "coop", "summer analyst", "student program")):
                         candidates += 1

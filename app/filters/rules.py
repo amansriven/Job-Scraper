@@ -44,11 +44,19 @@ def _has(text: str, terms: tuple[str, ...]) -> bool:
     return any(normalize(term) in padded for term in terms)
 
 
-def evaluate(job: Job, company: Company, minimum_tier: Tier = Tier.BASELINE) -> MatchResult:
+def evaluate(job: Job, company: Company, minimum_tier: Tier = Tier.BASELINE,
+             max_posting_age_hours: int = 48) -> MatchResult:
     title, body = normalize(job.title), normalize(job.description)
     combined = f" {title} {body} "
     if TIER_WEIGHT[company.tier] < TIER_WEIGHT[minimum_tier]:
         return MatchResult(False, None, 0, [], "company below reputation threshold")
+    if job.posted_at is None:
+        return MatchResult(False, None, 0, [], "posting date unavailable")
+    posting_age = utcnow() - job.posted_at
+    if posting_age < timedelta(hours=-6):
+        return MatchResult(False, None, 0, [], "posting date is unexpectedly in the future")
+    if posting_age > timedelta(hours=max_posting_age_hours):
+        return MatchResult(False, None, 0, [], f"posting is older than {max_posting_age_hours} hours")
     # Descriptions and equal-opportunity footers often mention interns. The role's
     # own title must carry student-program evidence to avoid alerting on full-time jobs.
     if not _has(title, INTERNSHIP):
@@ -86,10 +94,7 @@ def evaluate(job: Job, company: Company, minimum_tier: Tier = Tier.BASELINE) -> 
             background_score += min(6, 2 + hits)
     role_score = 28 if technical_title else 20
     internship_score = 18
-    freshness = 4
-    if job.posted_at:
-        age = utcnow() - job.posted_at
-        freshness = 10 if age <= timedelta(days=2) else 7 if age <= timedelta(days=7) else 3
+    freshness = 10
     score = min(100, TIER_WEIGHT[company.tier] + role_score + internship_score + freshness + background_score)
     category = "HIGH MATCH" if background_score >= 10 or score >= 85 else "REPUTABLE SWE"
     if not reasons:

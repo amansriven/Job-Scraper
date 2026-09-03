@@ -1,13 +1,16 @@
 from app.filters.rules import evaluate
-from app.models import Company, Job, Tier
+from datetime import timedelta
+
+from app.models import Company, Job, Tier, utcnow
 
 
 def company(tier=Tier.HIGH):
     return Company("Acme", "https://example.com/jobs", "greenhouse", "acme", tier)
 
 
-def job(title, location="New York, NY", description="Python software development and APIs"):
-    return Job("1", "Acme", title, location, description, "https://example.com/1", "https://example.com", "test")
+def job(title, location="New York, NY", description="Python software development and APIs", posted_at=None):
+    return Job("1", "Acme", title, location, description, "https://example.com/1", "https://example.com", "test",
+               posted_at=posted_at or utcnow())
 
 
 def test_accepts_generic_swe_internship():
@@ -32,3 +35,14 @@ def test_high_match_background():
     result = evaluate(job("Platform Engineering Intern", description="Build distributed systems with Kubernetes, Go, Prometheus and AWS"), company(Tier.ELITE))
     assert result.accepted and result.category == "HIGH MATCH" and result.score >= 80
 
+
+def test_rejects_postings_older_than_two_days():
+    result = evaluate(job("Software Engineer Intern", posted_at=utcnow() - timedelta(hours=49)), company())
+    assert not result.accepted and result.rejection == "posting is older than 48 hours"
+
+
+def test_rejects_missing_posting_date():
+    candidate = job("Software Engineer Intern")
+    candidate.posted_at = None
+    result = evaluate(candidate, company())
+    assert not result.accepted and result.rejection == "posting date unavailable"

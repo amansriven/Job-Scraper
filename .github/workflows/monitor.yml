@@ -23,6 +23,7 @@ jobs:
       REQUEST_TIMEOUT_SECONDS: "25"
       HTTP_RETRIES: "3"
       MINIMUM_TIER: baseline
+      MAX_POSTING_AGE_HOURS: "48"
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6

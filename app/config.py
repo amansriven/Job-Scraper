@@ -19,6 +19,7 @@ class Settings:
     request_timeout: float = float(os.getenv("REQUEST_TIMEOUT_SECONDS", "25"))
     retries: int = int(os.getenv("HTTP_RETRIES", "3"))
     minimum_tier: Tier = Tier(os.getenv("MINIMUM_TIER", "baseline"))
+    max_posting_age_hours: int = int(os.getenv("MAX_POSTING_AGE_HOURS", "48"))
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
     dry_run: bool = os.getenv("DRY_RUN", "false").lower() in {"1", "true", "yes"}
 
@@ -41,4 +42,3 @@ def load_companies(path: Path) -> list[Company]:
         known.add(key)
         result.append(company)
     return result
-
