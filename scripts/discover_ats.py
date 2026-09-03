@@ -12,7 +12,11 @@ import httpx
 import yaml
 
 PATTERNS = {
-    "greenhouse": [r"boards(?:-api)?\.greenhouse\.io/(?:embed/job_board\?for=|v1/boards/|[^/]+/)([\w-]+)"],
+    "greenhouse": [
+        r"boards-api\.greenhouse\.io/v1/boards/([\w-]+)",
+        r"boards\.greenhouse\.io/embed/job_board\?for=([\w-]+)",
+        r"(?:boards|job-boards)\.greenhouse\.io/([\w-]+)",
+    ],
     "lever": [r"(?:jobs|api)\.lever\.co/(?:v0/postings/)?([\w-]+)"],
     "ashby": [r"jobs\.ashbyhq\.com/([\w-]+)"],
     "workday": [r"https?://([\w-]+)\.(wd\d+\.)?myworkdayjobs\.com/(?:[\w-]+/)?([\w-]+)"],
@@ -56,6 +60,8 @@ def load_urls(path: Path) -> list[tuple[str, str]]:
 async def main_async() -> None:
     parser = argparse.ArgumentParser(description="Detect ATS providers from one URL or a YAML/CSV registry")
     parser.add_argument("target"); parser.add_argument("--concurrency", type=int, default=8)
+    parser.add_argument("--output", type=Path, help="Write YAML results to a file instead of stdout")
+    parser.add_argument("--summary", action="store_true", help="Print provider counts after discovery")
     args = parser.parse_args()
     path = Path(args.target)
     rows = load_urls(path) if path.exists() else [("", args.target)]
@@ -65,9 +71,18 @@ async def main_async() -> None:
             async with limit:
                 return {"name": name, **await discover(url, client)}
         results = await asyncio.gather(*(one(*row) for row in rows))
-    print(yaml.safe_dump(results, sort_keys=False))
+    rendered = yaml.safe_dump(results, sort_keys=False)
+    if args.output:
+        args.output.write_text(rendered, encoding="utf-8")
+        print(f"Wrote {len(results)} results to {args.output}")
+    else:
+        print(rendered)
+    if args.summary:
+        counts = {}
+        for result in results:
+            counts[result["ats"]] = counts.get(result["ats"], 0) + 1
+        print("ATS summary:", counts)
 
 
 if __name__ == "__main__":
     asyncio.run(main_async())
-
