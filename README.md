@@ -16,6 +16,17 @@ python scripts/validate_companies.py
 DRY_RUN=true python -m app.main
 ```
 
+Run a live audit of every configured and candidate company endpoint:
+
+```bash
+python scripts/audit_endpoints.py --output endpoint-audit.json
+```
+
+The weekly `Company endpoint audit` workflow stores the full JSON report as a
+30-day GitHub Actions artifact. Candidate companies are reported as verified
+only after their detected structured ATS feed successfully responds; the audit
+does not automatically enable entries.
+
 Set `DISCORD_WEBHOOK_URL`, then schedule `python -m app.main` every 30–60 minutes using cron, Railway, Render, GitHub Actions, or another external scheduler. The application deliberately performs one scan and exits. With SQLite, persist the `data/` directory; use a single scheduled instance to avoid concurrent writers.
 
 ## GitHub Actions with Neon

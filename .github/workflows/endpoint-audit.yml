@@ -1,0 +1,39 @@
+name: Company endpoint audit
+
+on:
+  schedule:
+    - cron: "43 9 * * 0"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Audit configured and candidate endpoints
+        run: python scripts/audit_endpoints.py --output endpoint-audit.json --fail-enabled
+        continue-on-error: true
+      - name: Upload endpoint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: endpoint-audit
+          path: endpoint-audit.json
+          retention-days: 30
+      - name: Enforce enabled endpoint health
+        run: |
+          python - <<'PY'
+          import json
+          report = json.load(open("endpoint-audit.json"))
+          failed = [r["name"] for r in report["results"] if r["enabled"] and r["status"] != "verified"]
+          if failed:
+              raise SystemExit("Enabled endpoints failed: " + ", ".join(failed))
+          PY

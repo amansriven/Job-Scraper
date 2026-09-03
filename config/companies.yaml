@@ -2120,9 +2120,14 @@ companies:
     enabled: false
   - name: "Zillow"
     career_url: "https://www.zillow.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "zillow"
     tier: target
-    enabled: false
+    enabled: true
+    config:
+      host: "zillow.wd5.myworkdayjobs.com"
+      tenant: "zillow"
+      site: "Zillow_Group_External"
   - name: "Redfin"
     career_url: "https://www.redfin.com/careers"
     ats: unknown
