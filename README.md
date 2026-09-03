@@ -46,6 +46,8 @@ Eligibility requires student/internship evidence, software/ML/infrastructure/sec
 
 Alerts also require a trustworthy original posting timestamp no more than 48 hours old. Jobs with missing dates, implausibly future dates, or older publication dates remain stored for deduplication but do not alert. Tune the strict window with `MAX_POSTING_AGE_HOURS`; the hosted workflow explicitly sets it to `48`.
 
+Each scan processes the complete job list returned by every enabled board. There is no per-run alert cap: if ten newly posted roles pass the rules in one scan, all ten are persisted and sent to Discord individually with rate-limit spacing.
+
 Scores combine company tier, role confidence, background signals, and freshness. A strong generic role remains `REPUTABLE SWE`; infrastructure, distributed systems, cloud, ML systems, observability, backend, networking, and relevant language signals can elevate it to `HIGH MATCH`. Rules live in `app/filters/rules.py` and are intentionally easy to tune.
 
 Jobs are unique by `(source, external_id)`, with a normalized company/title/location/canonical-URL fingerprint fallback. Reappearing stable IDs are updated without another alert. Collector health stores success/failure timestamps, consecutive failures, the latest error, and job counts.
