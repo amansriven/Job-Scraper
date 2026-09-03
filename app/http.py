@@ -30,7 +30,9 @@ class HttpClient:
                     return response
                 retry_after = response.headers.get("retry-after")
                 delay = float(retry_after) if retry_after and retry_after.isdigit() else 0.6 * (2**attempt) + random.random() * 0.25
-            except (httpx.TimeoutException, httpx.NetworkError, httpx.HTTPStatusError) as exc:
+            # TransportError also covers protocol-level disconnects such as a
+            # server closing an HTTP/2 stream before returning a response.
+            except (httpx.TransportError, httpx.HTTPStatusError) as exc:
                 last_error = exc
                 delay = 0.6 * (2**attempt) + random.random() * 0.25
             if attempt + 1 < self.retries:
@@ -45,4 +47,3 @@ class HttpClient:
 
     async def post(self, url: str, **kwargs) -> httpx.Response:
         return await self.request("POST", url, **kwargs)
-
