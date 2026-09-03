@@ -12,6 +12,7 @@ import httpx
 import yaml
 
 PATTERNS = {
+    "jibe": [r"app\.jibecdn\.com/prod/search/"],
     "greenhouse": [
         r"boards-api\.greenhouse\.io/v1/boards/([\w-]+)",
         r"boards\.greenhouse\.io/embed/job_board\?for=([\w-]+)",
@@ -38,10 +39,28 @@ async def discover(url: str, client: httpx.AsyncClient) -> dict:
                 match = re.search(pattern, text, re.I)
                 if match:
                     groups = [x for x in match.groups() if x and not x.startswith("wd")]
-                    result = {"career_url": url, "ats": ats, "ats_identifier": groups[0] if groups else None, "resolved_url": str(response.url)}
+                    identifier = groups[0] if groups else None
+                    if ats == "greenhouse" and identifier in {"embed", "jobs", "job", "boards"}:
+                        continue
+                    if ats == "lever" and identifier in {"v0", "v1", "postings", "jobs"}:
+                        continue
+                    result = {"career_url": url, "ats": ats, "ats_identifier": identifier, "resolved_url": str(response.url)}
+                    if ats == "jibe":
+                        parsed = urlparse(str(response.url))
+                        result["config"] = {"api_base": f"{parsed.scheme}://{parsed.netloc}"}
                     if ats == "workday" and groups:
                         host = urlparse(match.group(0)).netloc
                         result["config"] = {"host": host, "tenant": groups[0], "site": groups[-1]}
+                    if ats == "successfactors":
+                        job_link = re.search(r'href=["\'][^"\']*/job/[^"\']+/(\d+)/(?:\d+)["\']', response.text, re.I)
+                        form = re.search(r'<form[^>]+action=["\']([^"\']*search-jobs)["\']', response.text, re.I)
+                        if job_link and form:
+                            parsed = urlparse(str(response.url))
+                            result["config"] = {
+                                "base_url": f"{parsed.scheme}://{parsed.netloc}",
+                                "search_prefix": form.group(1),
+                                "organization_id": job_link.group(1),
+                            }
                     return result
         return {"career_url": url, "ats": "unknown", "resolved_url": str(response.url)}
     except Exception as exc:
