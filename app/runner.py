@@ -54,9 +54,10 @@ async def run(settings: Settings) -> Stats:
                         except Exception as exc:
                             db.mark_notified(job_id, False, str(exc)); log.error("%s: notification failed: %s", company.name, exc)
                 stats.internships += candidates; stats.matching += matched; stats.new += new_count
+                db.flush()
                 log.info("%s: fetched %d jobs, %d internship candidates, %d new matching", company.name, len(jobs), candidates, new_count)
             except Exception as exc:
-                stats.failed += 1; db.record_health(company.name, False, error=str(exc))
+                stats.failed += 1; db.record_health(company.name, False, error=str(exc)); db.flush()
                 log.error("%s: scraper unavailable: %s", company.name, exc)
 
     try:

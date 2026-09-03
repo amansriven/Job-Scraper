@@ -41,6 +41,7 @@ class Persistence(Protocol):
     def upsert_job(self, job: Job, match: MatchResult) -> tuple[bool, int]: ...
     def mark_notified(self, job_id: int, success: bool, error: str | None = None) -> None: ...
     def record_health(self, company: str, success: bool, count: int = 0, error: str | None = None) -> None: ...
+    def flush(self) -> None: ...
     def close(self) -> None: ...
 
 
@@ -97,6 +98,9 @@ class SQLiteDatabase:
     def close(self) -> None:
         pass
 
+    def flush(self) -> None:
+        pass
+
 
 class PostgresDatabase:
     def __init__(self, url: str):
@@ -109,33 +113,37 @@ class PostgresDatabase:
         with self.connection() as conn:
             for statement in filter(str.strip, POSTGRES_SCHEMA.split(";")):
                 conn.execute(statement)
+        rows = self.conn.execute("SELECT id,source,external_id,fingerprint FROM jobs").fetchall()
+        self.by_key = {(row[1], row[2]): int(row[0]) for row in rows}
+        self.by_fingerprint = {row[3]: int(row[0]) for row in rows}
 
     @contextmanager
     def connection(self):
         try:
-            yield self.conn; self.conn.commit()
+            yield self.conn
         except Exception:
             self.conn.rollback(); raise
 
     def upsert_job(self, job: Job, match: MatchResult) -> tuple[bool, int]:
         now = utcnow()
         with self.connection() as conn:
-            row = conn.execute("SELECT id FROM jobs WHERE source=%s AND external_id=%s", (job.source, job.external_id)).fetchone()
-            if not row:
-                row = conn.execute("SELECT id FROM jobs WHERE fingerprint=%s", (job.fingerprint,)).fetchone()
-            if row:
+            existing_id = self.by_key.get((job.source, job.external_id)) or self.by_fingerprint.get(job.fingerprint)
+            if existing_id:
                 conn.execute("""UPDATE jobs SET last_seen_at=%s,status='active',title=%s,location=%s,apply_url=%s,
                     source_url=%s,description=%s,posted_at=COALESCE(%s,posted_at),match_category=%s,match_score=%s,
                     match_reasons=%s WHERE id=%s""", (now, job.title, job.location, job.apply_url, job.source_url,
-                    job.description, job.posted_at, match.category, match.score, json.dumps(match.reasons), row[0]))
-                return False, int(row[0])
+                    job.description, job.posted_at, match.category, match.score, json.dumps(match.reasons), existing_id))
+                return False, existing_id
             row = conn.execute("""INSERT INTO jobs(source,external_id,fingerprint,company,title,location,apply_url,source_url,
                 description,posted_at,first_seen_at,last_seen_at,match_category,match_score,match_reasons,notification_status)
                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""", (job.source,
                 job.external_id, job.fingerprint, job.company, job.title, job.location, job.apply_url, job.source_url,
                 job.description, job.posted_at, now, now, match.category, match.score, json.dumps(match.reasons),
                 "pending" if match.accepted else "not_applicable")).fetchone()
-            return True, int(row[0])
+            job_id = int(row[0])
+            self.by_key[(job.source, job.external_id)] = job_id
+            self.by_fingerprint[job.fingerprint] = job_id
+            return True, job_id
 
     def mark_notified(self, job_id: int, success: bool, error: str | None = None) -> None:
         with self.connection() as conn:
@@ -145,14 +153,24 @@ class PostgresDatabase:
     def record_health(self, company: str, success: bool, count: int = 0, error: str | None = None) -> None:
         now = utcnow()
         with self.connection() as conn:
-            conn.execute("INSERT INTO collector_health(company) VALUES(%s) ON CONFLICT(company) DO NOTHING", (company,))
             if success:
-                conn.execute("UPDATE collector_health SET last_success_at=%s,consecutive_failures=0,most_recent_error=NULL,last_job_count=%s WHERE company=%s", (now, count, company))
+                conn.execute("""INSERT INTO collector_health(company,last_success_at,last_job_count)
+                    VALUES(%s,%s,%s) ON CONFLICT(company) DO UPDATE SET last_success_at=EXCLUDED.last_success_at,
+                    consecutive_failures=0,most_recent_error=NULL,last_job_count=EXCLUDED.last_job_count""", (company, now, count))
             else:
-                conn.execute("UPDATE collector_health SET last_failure_at=%s,consecutive_failures=consecutive_failures+1,most_recent_error=%s WHERE company=%s", (now, (error or "")[:1000], company))
+                conn.execute("""INSERT INTO collector_health(company,last_failure_at,consecutive_failures,most_recent_error)
+                    VALUES(%s,%s,1,%s) ON CONFLICT(company) DO UPDATE SET last_failure_at=EXCLUDED.last_failure_at,
+                    consecutive_failures=collector_health.consecutive_failures+1,
+                    most_recent_error=EXCLUDED.most_recent_error""", (company, now, (error or "")[:1000]))
+
+    def flush(self) -> None:
+        self.conn.commit()
 
     def close(self) -> None:
-        self.conn.close()
+        try:
+            self.conn.commit()
+        finally:
+            self.conn.close()
 
 
 def _notification_status(success: bool, error: str | None) -> str:
