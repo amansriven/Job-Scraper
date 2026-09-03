@@ -17,16 +17,35 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements-discovery.txt
+      - run: python -m playwright install --with-deps chromium
       - name: Audit configured and candidate endpoints
         run: python scripts/audit_endpoints.py --output endpoint-audit.json --fail-enabled
         continue-on-error: true
-      - name: Upload endpoint report
+      - name: Probe ATS APIs for unresolved companies
+        if: always()
+        run: python scripts/probe_ats.py config/companies.yaml --only-unknown --output probe-results.json
+        continue-on-error: true
+      - name: Browser discovery for unresolved companies
+        if: always()
+        run: python scripts/browser_discover.py --audit-report endpoint-audit.json --output browser-discovery.json
+      - name: Verify browser-discovered ATS candidates
+        if: always()
+        run: python scripts/verify_browser_candidates.py browser-discovery.json --output verified-browser-candidates.json
+      - name: Verify enabled companies still match their registered identity
+        if: always()
+        run: python scripts/verify_registry_identity.py config/companies.yaml --output identity-audit.json
+      - name: Upload endpoint reports
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: endpoint-audit
-          path: endpoint-audit.json
+          path: |
+            endpoint-audit.json
+            probe-results.json
+            browser-discovery.json
+            verified-browser-candidates.json
+            identity-audit.json
           retention-days: 30
       - name: Enforce enabled endpoint health
         run: |
@@ -36,4 +55,13 @@ jobs:
           failed = [r["name"] for r in report["results"] if r["enabled"] and r["status"] != "verified"]
           if failed:
               raise SystemExit("Enabled endpoints failed: " + ", ".join(failed))
+          PY
+      - name: Enforce enabled companies match their registered identity
+        run: |
+          python - <<'PY'
+          import json
+          report = json.load(open("identity-audit.json"))
+          mismatches = [r["name"] for r in report["results"] if r["status"] == "mismatch"]
+          if mismatches:
+              raise SystemExit("Enabled companies resolved to a different employer's board: " + ", ".join(mismatches))
           PY

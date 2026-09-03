@@ -40,16 +40,41 @@ Push the repository, open **Actions → Internship monitor**, and use **Run work
 
 ## Registry policy
 
-`config/companies.yaml` contains more than 300 reputable U.S. internship targets. Entries with a verified structured collector configuration are enabled. The broader curated universe is deliberately disabled and marked `ats: unknown` until its career URL and ATS identifier are verified; this prevents hundreds of predictable failures and false confidence. Enable companies incrementally:
+`config/companies.yaml` contains more than 400 reputable U.S. internship targets. Entries with a verified structured collector configuration are enabled; the rest stay `ats: unknown, enabled: false` until verified, which prevents hundreds of predictable failures and false confidence.
+
+Two complementary discovery paths feed the registry:
 
 ```bash
-python scripts/discover_ats.py https://company.example/careers
-python scripts/discover_ats.py config/companies.yaml > discovery.yaml
+# 1. Probe ATS APIs directly by guessing slugs from the company name.
+# Fast, and catches most Greenhouse/Lever/Ashby/SmartRecruiters/Workday boards.
+python scripts/probe_ats.py config/companies.yaml --only-unknown --output probe.json
+
+# 2. Render JS-only career pages in a real browser and inspect network
+# traffic for the underlying job API. Slower; a fallback for the rest.
+python scripts/browser_discover.py config/companies.yaml --output browser.json
+python scripts/verify_browser_candidates.py browser.json --output verified.json
 ```
 
-Transfer the detected ATS fields into the registry, verify with a dry run, then set `enabled: true`. For custom sites, use `ats: generic` with `config.job_selector`, `title_selector`, `link_selector`, and optionally `location_selector` and `fetch_detail`.
+Both probers verify more than "the API responded": they reject test/sandbox
+boards and check that the postings actually self-describe as the target
+company (org name field where the ATS exposes one, otherwise the postings'
+own text) before returning a match — a plausible-looking slug guess can
+resolve to a real, healthy board that simply belongs to someone else (e.g.
+`applied` on Ashby is Applied Intuition, not Applied Materials). Apply
+verified results with:
 
-Workday entries also need `config.host`, `config.tenant`, and `config.site`; Workday tenants vary by cluster. SmartRecruiters, Ashby, Lever, and Greenhouse use `ats_identifier` as their tenant/board slug. iCIMS and SuccessFactors are detected by discovery but intentionally require a custom adapter because public endpoints and tenant configuration vary substantially.
+```bash
+python scripts/apply_probe_results.py config/companies.yaml probe.json
+```
+
+`scripts/verify_registry_identity.py` re-checks every already-*enabled*
+company the same way, independent of how it was discovered — useful after
+editing the registry by hand, or periodically, since crawl-based discovery
+predates the identity checks above and isn't automatically covered by them.
+
+For custom sites, use `ats: generic` with `config.job_selector`, `title_selector`, `link_selector`, and optionally `location_selector` and `fetch_detail`.
+
+Workday entries also need `config.host`, `config.tenant`, and `config.site`; Workday tenants vary by cluster. SmartRecruiters, Ashby, Lever, and Greenhouse use `ats_identifier` as their tenant/board slug. iCIMS and SuccessFactors are detected by discovery but intentionally require a custom adapter because public endpoints and tenant configuration vary substantially. Companies with a fully custom career API (no third-party ATS) need a dedicated collector, e.g. `app/collectors/amazon.py`.
 
 ## Matching and safety
 

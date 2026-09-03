@@ -1,9 +1,9 @@
 import httpx
 import pytest
 
+from app.collectors.amazon import AmazonCollector, parse_amazon_date
 from app.collectors.greenhouse import GreenhouseCollector
 from app.collectors.jibe import JibeCollector
-from app.collectors.simplify import SimplifyCollector
 from app.collectors.workday import WorkdayCollector
 from app.models import Company
 
@@ -73,23 +73,34 @@ async def test_jibe_normalizes_and_filters_titles():
     assert jobs[0].posted_at.isoformat() == "2026-09-03T08:00:00+00:00"
 
 
-class FakeSimplifyHttp:
+
+class FakeAmazonHttp:
     async def get(self, url, **kwargs):
-        now = int(__import__("time").time())
-        return httpx.Response(200, json=[
-            {"id": "S1", "active": True, "is_visible": True, "date_posted": now,
-             "company_name": "Example Corp", "title": "Software Engineer Intern",
-             "locations": ["Chicago, IL"], "url": "https://example.com/jobs/S1",
-             "category": "Software", "terms": ["Summer 2027"], "degrees": ["Bachelor's"]},
-            {"id": "S2", "active": False, "date_posted": now, "company_name": "Closed",
-             "title": "Developer Intern", "locations": ["Austin, TX"], "url": "https://example.com/S2"},
-        ])
+        return httpx.Response(200, json={"hits": 1, "jobs": [{
+            "id_icims": "10418355",
+            "title": "2027 Software Dev Engineer Intern",
+            "normalized_location": "Seattle, WA, USA",
+            "description": "Build systems.",
+            "basic_qualifications": "Enrolled in a Bachelor's degree",
+            "preferred_qualifications": "Distributed systems",
+            "job_path": "/en/jobs/10418355/intern",
+            "posted_date": "May 13, 2026",
+        }]})
 
 
 @pytest.mark.asyncio
-async def test_simplify_keeps_recent_active_roles_and_real_company():
-    company = Company("Aggregate", "https://example.com/feed", "simplify", config={"lookback_hours": 72})
-    jobs = await SimplifyCollector(FakeSimplifyHttp()).fetch_jobs(company)
+async def test_amazon_normalizes_postings_and_dates():
+    company = Company("Amazon", "https://www.amazon.jobs", "amazon", None,
+                      config={"search_terms": ["intern"]})
+    jobs = await AmazonCollector(FakeAmazonHttp()).fetch_jobs(company)
     assert len(jobs) == 1
-    assert jobs[0].company == "Example Corp"
-    assert jobs[0].external_id == "S1"
+    job = jobs[0]
+    assert job.external_id == "10418355"
+    assert job.posted_at.isoformat() == "2026-05-13T00:00:00+00:00"
+    assert "Distributed systems" in job.description
+    assert job.apply_url == "https://www.amazon.jobs/en/jobs/10418355/intern"
+
+
+def test_amazon_rejects_unparseable_dates():
+    assert parse_amazon_date("not a date") is None
+    assert parse_amazon_date(None) is None

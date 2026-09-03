@@ -1,15 +1,7 @@
-# Registry policy: enabled entries have a configured structured collector.
-# Disabled entries are reputable seed candidates awaiting ATS verification via scripts/discover_ats.py.
+# Registry policy: enabled entries have a verified structured collector.
+# Disabled entries are reputable seed candidates awaiting ATS verification
+# via scripts/probe_ats.py and scripts/audit_endpoints.py.
 companies:
-  # Broad, machine-readable coverage layer. Direct ATS entries below remain the
-  # authoritative fallback and fingerprint deduplication prevents double alerts.
-  - name: "Simplify + Pitt CSC Internship Feed"
-    career_url: "https://github.com/SimplifyJobs/Summer2027-Internships"
-    ats: simplify
-    tier: baseline
-    enabled: true
-    config:
-      lookback_hours: 72
   - name: "Google"
     career_url: "https://www.google.com/careers"
     ats: unknown
@@ -26,10 +18,13 @@ companies:
     tier: elite
     enabled: false
   - name: "Amazon"
-    career_url: "https://www.amazon.com/careers"
-    ats: unknown
+    career_url: "https://www.amazon.jobs/en/search"
+    ats: amazon
+    config:
+      search_terms: ["software engineer intern", "software development engineer intern", "intern", "co-op"]
+      max_jobs_per_term: 500
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Meta"
     career_url: "https://www.meta.com/careers"
     ats: unknown
@@ -43,9 +38,14 @@ companies:
     enabled: false
   - name: "NVIDIA"
     career_url: "https://www.nvidia.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "nvidia"
+    config:
+      host: "nvidia.wd5.myworkdayjobs.com"
+      tenant: "nvidia"
+      site: "NvidiaExternalCareerSite"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Adobe"
     career_url: "https://www.adobe.com/careers"
     ats: unknown
@@ -53,9 +53,14 @@ companies:
     enabled: false
   - name: "Salesforce"
     career_url: "https://www.salesforce.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "salesforce"
+    config:
+      host: "salesforce.wd12.myworkdayjobs.com"
+      tenant: "salesforce"
+      site: "External_Career_Site"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Oracle"
     career_url: "https://www.oracle.com/careers"
     ats: unknown
@@ -68,9 +73,14 @@ companies:
     enabled: false
   - name: "Cisco"
     career_url: "https://www.cisco.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "cisco"
+    config:
+      host: "cisco.wd5.myworkdayjobs.com"
+      tenant: "cisco"
+      site: "Cisco_Careers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Uber"
     career_url: "https://www.uber.com/careers"
     ats: unknown
@@ -78,19 +88,22 @@ companies:
     enabled: false
   - name: "Lyft"
     career_url: "https://www.lyft.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "lyft"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Airbnb"
     career_url: "https://www.airbnb.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "airbnb"
     tier: high
-    enabled: false
+    enabled: true
   - name: "Dropbox"
     career_url: "https://www.dropbox.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "dropbox"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Snap"
     career_url: "https://www.snap.com/careers"
     ats: unknown
@@ -98,9 +111,10 @@ companies:
     enabled: false
   - name: "Pinterest"
     career_url: "https://www.pinterest.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "pinterest"
     tier: high
-    enabled: false
+    enabled: true
   - name: "LinkedIn"
     career_url: "https://www.linkedin.com/careers"
     ats: unknown
@@ -118,14 +132,16 @@ companies:
     enabled: false
   - name: "Reddit"
     career_url: "https://www.reddit.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "reddit"
     tier: high
-    enabled: false
+    enabled: true
   - name: "Roblox"
     career_url: "https://www.roblox.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "roblox"
     tier: high
-    enabled: false
+    enabled: true
   - name: "DoorDash"
     career_url: "https://www.doordash.com/careers"
     ats: unknown
@@ -133,24 +149,32 @@ companies:
     enabled: false
   - name: "Instacart"
     career_url: "https://www.instacart.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "instacart"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Spotify"
     career_url: "https://www.spotify.com/careers"
-    ats: unknown
+    ats: lever
+    ats_identifier: "spotify"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Block"
     career_url: "https://www.block.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "block"
     tier: target
-    enabled: false
+    enabled: true
   - name: "PayPal"
     career_url: "https://www.paypal.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "paypal"
+    config:
+      host: "paypal.wd1.myworkdayjobs.com"
+      tenant: "paypal"
+      site: "jobs"
     tier: target
-    enabled: false
+    enabled: true
   - name: "eBay"
     career_url: "https://www.ebay.com/careers"
     ats: unknown
@@ -158,9 +182,10 @@ companies:
     enabled: false
   - name: "Coinbase"
     career_url: "https://www.coinbase.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "coinbase"
     tier: high
-    enabled: false
+    enabled: true
   - name: "Datadog"
     career_url: "https://careers.datadoghq.com/"
     ats: greenhouse
@@ -175,24 +200,28 @@ companies:
     enabled: true
   - name: "Snowflake"
     career_url: "https://www.snowflake.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "snowflake"
     tier: high
-    enabled: false
+    enabled: true
   - name: "MongoDB"
     career_url: "https://www.mongodb.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "mongodb"
     tier: high
-    enabled: false
+    enabled: true
   - name: "Confluent"
     career_url: "https://www.confluent.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "confluent"
     tier: high
-    enabled: false
+    enabled: true
   - name: "Elastic"
     career_url: "https://www.elastic.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "elastic"
     tier: target
-    enabled: false
+    enabled: true
   - name: "HashiCorp"
     career_url: "https://www.hashicorp.com/careers"
     ats: unknown
@@ -201,15 +230,16 @@ companies:
   - name: "GitHub"
     career_url: "https://www.github.com/careers"
     ats: jibe
-    tier: target
-    enabled: true
     config:
       api_base: "https://www.github.careers"
+    tier: target
+    enabled: true
   - name: "GitLab"
     career_url: "https://www.gitlab.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "gitlab"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Atlassian"
     career_url: "https://www.atlassian.com/careers"
     ats: unknown
@@ -217,14 +247,16 @@ companies:
     enabled: false
   - name: "Twilio"
     career_url: "https://www.twilio.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "twilio"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Okta"
     career_url: "https://www.okta.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "okta"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Zoom"
     career_url: "https://www.zoom.com/careers"
     ats: unknown
@@ -237,17 +269,18 @@ companies:
     enabled: false
   - name: "ServiceNow"
     career_url: "https://www.servicenow.com/careers"
-    ats: unknown
+    ats: smartrecruiters
+    ats_identifier: "servicenow"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Workday"
     career_url: "https://www.workday.com/careers"
     ats: workday
     ats_identifier: "workday"
     config:
-      host: workday.wd5.myworkdayjobs.com
-      tenant: workday
-      site: Workday
+      host: "workday.wd5.myworkdayjobs.com"
+      tenant: "workday"
+      site: "Workday"
     tier: target
     enabled: true
   - name: "HubSpot"
@@ -274,19 +307,22 @@ companies:
     enabled: false
   - name: "OpenAI"
     career_url: "https://www.openai.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "openai"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Anthropic"
     career_url: "https://www.anthropic.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "anthropic"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Scale AI"
     career_url: "https://www.scaleai.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "scaleai"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Cohere"
     career_url: "https://www.cohere.com/careers"
     ats: ashby
@@ -300,9 +336,10 @@ companies:
     enabled: false
   - name: "Perplexity"
     career_url: "https://www.perplexity.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "perplexity"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Mistral AI"
     career_url: "https://www.mistralai.com/careers"
     ats: unknown
@@ -315,24 +352,28 @@ companies:
     enabled: false
   - name: "Glean"
     career_url: "https://www.glean.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "gleanwork"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Together AI"
     career_url: "https://www.togetherai.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "togetherai"
     tier: target
-    enabled: false
+    enabled: true
   - name: "CoreWeave"
     career_url: "https://www.coreweave.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "coreweave"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Lambda"
     career_url: "https://www.lambda.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "lambda"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Groq"
     career_url: "https://www.groq.com/careers"
     ats: unknown
@@ -340,9 +381,10 @@ companies:
     enabled: false
   - name: "Cerebras"
     career_url: "https://www.cerebras.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "cerebras"
     tier: target
-    enabled: false
+    enabled: true
   - name: "SambaNova"
     career_url: "https://www.sambanova.com/careers"
     ats: unknown
@@ -366,14 +408,16 @@ companies:
     enabled: true
   - name: "Character AI"
     career_url: "https://www.characterai.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "character"
     tier: target
-    enabled: false
+    enabled: true
   - name: "ElevenLabs"
     career_url: "https://www.elevenlabs.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "elevenlabs"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Pinecone"
     career_url: "https://www.pinecone.com/careers"
     ats: unknown
@@ -410,19 +454,22 @@ companies:
     enabled: true
   - name: "Canva"
     career_url: "https://www.canva.com/careers"
-    ats: unknown
+    ats: smartrecruiters
+    ats_identifier: "canva"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Airtable"
     career_url: "https://www.airtable.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "airtable"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Asana"
     career_url: "https://www.asana.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "asana"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Monday.com"
     career_url: "https://www.mondaycom.com/careers"
     ats: unknown
@@ -435,9 +482,10 @@ companies:
     enabled: false
   - name: "Box"
     career_url: "https://www.box.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "boxinc"
     tier: target
-    enabled: false
+    enabled: true
   - name: "DocuSign"
     career_url: "https://www.docusign.com/careers"
     ats: unknown
@@ -445,9 +493,10 @@ companies:
     enabled: false
   - name: "Dropbox Sign"
     career_url: "https://www.dropboxsign.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "dropbox"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Grammarly"
     career_url: "https://www.grammarly.com/careers"
     ats: unknown
@@ -461,14 +510,16 @@ companies:
     enabled: true
   - name: "Coursera"
     career_url: "https://www.coursera.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "coursera"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Udemy"
     career_url: "https://www.udemy.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "udemy"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Chegg"
     career_url: "https://www.chegg.com/careers"
     ats: unknown
@@ -476,9 +527,10 @@ companies:
     enabled: false
   - name: "Khan Academy"
     career_url: "https://www.khanacademy.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "khanacademy"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Quizlet"
     career_url: "https://www.quizlet.com/careers"
     ats: unknown
@@ -492,19 +544,22 @@ companies:
     enabled: true
   - name: "Twitch"
     career_url: "https://www.twitch.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "twitch"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Epic Games"
     career_url: "https://www.epicgames.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "epicgames"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Riot Games"
     career_url: "https://www.riotgames.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "riotgames"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Electronic Arts"
     career_url: "https://www.electronicarts.com/careers"
     ats: unknown
@@ -538,9 +593,10 @@ companies:
     enabled: false
   - name: "SpaceX"
     career_url: "https://www.spacex.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "spacex"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Blue Origin"
     career_url: "https://www.blueorigin.com/careers"
     ats: unknown
@@ -548,27 +604,30 @@ companies:
     enabled: false
   - name: "Rocket Lab"
     career_url: "https://www.rocketlab.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "rocketlab"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Relativity Space"
     career_url: "https://www.relativityspace.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "relativity"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Varda Space"
     career_url: "https://www.vardaspace.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "vardaspace"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Axiom Space"
     career_url: "https://www.axiomspace.com/careers"
     ats: workday
     ats_identifier: "axiomspace"
     config:
-      host: axiomspace.wd5.myworkdayjobs.com
-      tenant: axiomspace
-      site: External_Career_Site
+      host: "axiomspace.wd5.myworkdayjobs.com"
+      tenant: "axiomspace"
+      site: "External_Career_Site"
     tier: target
     enabled: true
   - name: "Sierra Space"
@@ -576,31 +635,35 @@ companies:
     ats: workday
     ats_identifier: "sierraspace"
     config:
-      host: sierraspace.wd1.myworkdayjobs.com
-      tenant: sierraspace
-      site: Sierra_Space_External_Career_Site
+      host: "sierraspace.wd1.myworkdayjobs.com"
+      tenant: "sierraspace"
+      site: "Sierra_Space_External_Career_Site"
     tier: target
     enabled: true
   - name: "Shield AI"
     career_url: "https://www.shieldai.com/careers"
-    ats: unknown
+    ats: lever
+    ats_identifier: "shieldai"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Skydio"
     career_url: "https://www.skydio.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "skydio"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Saronic"
     career_url: "https://www.saronic.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "saronic"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Epirus"
     career_url: "https://www.epirus.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "epirus"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Astranis"
     career_url: "https://www.astranis.com/careers"
     ats: greenhouse
@@ -609,17 +672,18 @@ companies:
     enabled: true
   - name: "Planet Labs"
     career_url: "https://www.planetlabs.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "planetlabs"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Maxar"
     career_url: "https://www.maxar.com/careers"
     ats: workday
     ats_identifier: "maxar"
     config:
-      host: maxar.wd1.myworkdayjobs.com
-      tenant: maxar
-      site: Vantor
+      host: "maxar.wd1.myworkdayjobs.com"
+      tenant: "maxar"
+      site: "Vantor"
     tier: target
     enabled: true
   - name: "Northrop Grumman"
@@ -642,9 +706,9 @@ companies:
     ats: workday
     ats_identifier: "boeing"
     config:
-      host: boeing.wd1.myworkdayjobs.com
-      tenant: boeing
-      site: EXTERNAL_CAREERS
+      host: "boeing.wd1.myworkdayjobs.com"
+      tenant: "boeing"
+      site: "EXTERNAL_CAREERS"
     tier: target
     enabled: true
   - name: "General Dynamics"
@@ -664,14 +728,20 @@ companies:
     enabled: false
   - name: "Leidos"
     career_url: "https://www.leidos.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "leidos"
+    config:
+      host: "leidos.wd5.myworkdayjobs.com"
+      tenant: "leidos"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "CACI"
     career_url: "https://www.caci.com/careers"
-    ats: unknown
+    ats: smartrecruiters
+    ats_identifier: "caci"
     tier: target
-    enabled: false
+    enabled: true
   - name: "SAIC"
     career_url: "https://www.saic.com/careers"
     ats: unknown
@@ -695,20 +765,22 @@ companies:
   - name: "Rivian"
     career_url: "https://www.rivian.com/careers"
     ats: jibe
-    tier: target
-    enabled: true
     config:
       api_base: "https://careers.rivian.com"
+    tier: target
+    enabled: true
   - name: "Lucid Motors"
     career_url: "https://www.lucidmotors.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "lucidmotors"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Waymo"
     career_url: "https://www.waymo.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "waymo"
     tier: high
-    enabled: false
+    enabled: true
   - name: "Cruise"
     career_url: "https://www.cruise.com/careers"
     ats: unknown
@@ -716,9 +788,10 @@ companies:
     enabled: false
   - name: "Zoox"
     career_url: "https://www.zoox.com/careers"
-    ats: unknown
+    ats: lever
+    ats_identifier: "zoox"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Aurora Innovation"
     career_url: "https://www.aurorainnovation.com/careers"
     ats: unknown
@@ -731,9 +804,10 @@ companies:
     enabled: false
   - name: "Motional"
     career_url: "https://www.motional.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "motional"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Kodiak Robotics"
     career_url: "https://www.kodiakrobotics.com/careers"
     ats: greenhouse
@@ -742,9 +816,10 @@ companies:
     enabled: true
   - name: "Waabi"
     career_url: "https://www.waabi.com/careers"
-    ats: unknown
+    ats: lever
+    ats_identifier: "waabi"
     tier: target
-    enabled: false
+    enabled: true
   - name: "May Mobility"
     career_url: "https://www.maymobility.com/careers"
     ats: greenhouse
@@ -827,9 +902,9 @@ companies:
     ats: workday
     ats_identifier: "rockwellautomation"
     config:
-      host: rockwellautomation.wd1.myworkdayjobs.com
-      tenant: rockwellautomation
-      site: External_Rockwell_Automation
+      host: "rockwellautomation.wd1.myworkdayjobs.com"
+      tenant: "rockwellautomation"
+      site: "External_Rockwell_Automation"
     tier: target
     enabled: true
   - name: "Emerson"
@@ -849,9 +924,14 @@ companies:
     enabled: false
   - name: "Intel"
     career_url: "https://www.intel.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "intel"
+    config:
+      host: "intel.wd1.myworkdayjobs.com"
+      tenant: "intel"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "AMD"
     career_url: "https://www.amd.com/careers"
     ats: unknown
@@ -864,14 +944,24 @@ companies:
     enabled: false
   - name: "Broadcom"
     career_url: "https://www.broadcom.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "broadcom"
+    config:
+      host: "broadcom.wd1.myworkdayjobs.com"
+      site: "External_Career"
+      tenant: "broadcom"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Micron"
     career_url: "https://www.micron.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "micron"
+    config:
+      host: "micron.wd1.myworkdayjobs.com"
+      tenant: "micron"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Texas Instruments"
     career_url: "https://www.texasinstruments.com/careers"
     ats: unknown
@@ -879,9 +969,14 @@ companies:
     enabled: false
   - name: "Analog Devices"
     career_url: "https://www.analogdevices.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "analogdevices"
+    config:
+      host: "analogdevices.wd1.myworkdayjobs.com"
+      tenant: "analogdevices"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Arm"
     career_url: "https://www.arm.com/careers"
     ats: unknown
@@ -894,17 +989,22 @@ companies:
     enabled: false
   - name: "Cadence"
     career_url: "https://www.cadence.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "cadence"
+    config:
+      host: "cadence.wd1.myworkdayjobs.com"
+      tenant: "cadence"
+      site: "External_Careers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Marvell"
     career_url: "https://www.marvell.com/careers"
     ats: workday
     ats_identifier: "marvell"
     config:
-      host: marvell.wd1.myworkdayjobs.com
-      tenant: marvell
-      site: MarvellCareers
+      host: "marvell.wd1.myworkdayjobs.com"
+      tenant: "marvell"
+      site: "MarvellCareers"
     tier: target
     enabled: true
   - name: "Applied Materials"
@@ -922,9 +1022,9 @@ companies:
     ats: workday
     ats_identifier: "kla"
     config:
-      host: kla.wd1.myworkdayjobs.com
-      tenant: kla
-      site: Search
+      host: "kla.wd1.myworkdayjobs.com"
+      tenant: "kla"
+      site: "Search"
     tier: target
     enabled: true
   - name: "ASML"
@@ -934,14 +1034,20 @@ companies:
     enabled: false
   - name: "GlobalFoundries"
     career_url: "https://www.globalfoundries.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "globalfoundries"
+    config:
+      host: "globalfoundries.wd1.myworkdayjobs.com"
+      tenant: "globalfoundries"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Western Digital"
     career_url: "https://www.westerndigital.com/careers"
-    ats: unknown
+    ats: smartrecruiters
+    ats_identifier: "westerndigital"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Seagate"
     career_url: "https://www.seagate.com/careers"
     ats: unknown
@@ -949,9 +1055,10 @@ companies:
     enabled: false
   - name: "Samsung Semiconductor"
     career_url: "https://www.samsungsemiconductor.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "samsungsemiconductor"
     tier: target
-    enabled: false
+    enabled: true
   - name: "TSMC Arizona"
     career_url: "https://www.tsmcarizona.com/careers"
     ats: unknown
@@ -962,9 +1069,9 @@ companies:
     ats: workday
     ats_identifier: "sifive"
     config:
-      host: sifive.wd1.myworkdayjobs.com
-      tenant: sifive
-      site: sifivecareers
+      host: "sifive.wd1.myworkdayjobs.com"
+      tenant: "sifive"
+      site: "sifivecareers"
     tier: target
     enabled: true
   - name: "Tenstorrent"
@@ -975,9 +1082,10 @@ companies:
     enabled: true
   - name: "Lightmatter"
     career_url: "https://www.lightmatter.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "lightmatter"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Celestial AI"
     career_url: "https://www.celestialai.com/careers"
     ats: unknown
@@ -1003,9 +1111,9 @@ companies:
     ats: workday
     ats_identifier: "ghr"
     config:
-      host: ghr.wd1.myworkdayjobs.com
-      tenant: ghr
-      site: lateral-us
+      host: "ghr.wd1.myworkdayjobs.com"
+      tenant: "ghr"
+      site: "lateral-us"
     tier: target
     enabled: true
   - name: "Capital One"
@@ -1018,8 +1126,8 @@ companies:
     ats: workday
     ats_identifier: "citi"
     config:
-      host: citi.wd5.myworkdayjobs.com
-      tenant: citi
+      host: "citi.wd5.myworkdayjobs.com"
+      tenant: "citi"
       site: 2
     tier: target
     enabled: true
@@ -1038,9 +1146,9 @@ companies:
     ats: workday
     ats_identifier: "visa"
     config:
-      host: visa.wd5.myworkdayjobs.com
-      tenant: visa
-      site: Visa
+      host: "visa.wd5.myworkdayjobs.com"
+      tenant: "visa"
+      site: "Visa"
     tier: target
     enabled: true
   - name: "Mastercard"
@@ -1048,9 +1156,9 @@ companies:
     ats: workday
     ats_identifier: "mastercard"
     config:
-      host: mastercard.wd1.myworkdayjobs.com
-      tenant: mastercard
-      site: CorporateCareers
+      host: "mastercard.wd1.myworkdayjobs.com"
+      tenant: "mastercard"
+      site: "CorporateCareers"
     tier: target
     enabled: true
   - name: "Discover"
@@ -1083,9 +1191,9 @@ companies:
     ats: workday
     ats_identifier: "statestreet"
     config:
-      host: statestreet.wd1.myworkdayjobs.com
-      tenant: statestreet
-      site: Global
+      host: "statestreet.wd1.myworkdayjobs.com"
+      tenant: "statestreet"
+      site: "Global"
     tier: target
     enabled: true
   - name: "BNY"
@@ -1098,9 +1206,9 @@ companies:
     ats: workday
     ats_identifier: "nasdaq"
     config:
-      host: nasdaq.wd1.myworkdayjobs.com
-      tenant: nasdaq
-      site: Global_External_Site
+      host: "nasdaq.wd1.myworkdayjobs.com"
+      tenant: "nasdaq"
+      site: "Global_External_Site"
     tier: target
     enabled: true
   - name: "Intercontinental Exchange"
@@ -1110,24 +1218,28 @@ companies:
     enabled: false
   - name: "Robinhood"
     career_url: "https://www.robinhood.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "robinhood"
     tier: target
-    enabled: false
+    enabled: true
   - name: "SoFi"
     career_url: "https://www.sofi.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "sofi"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Chime"
     career_url: "https://www.chime.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "chime"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Brex"
     career_url: "https://www.brex.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "brex"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Ramp"
     career_url: "https://ramp.com/careers"
     ats: ashby
@@ -1136,9 +1248,10 @@ companies:
     enabled: true
   - name: "Affirm"
     career_url: "https://www.affirm.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "affirm"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Klarna"
     career_url: "https://www.klarna.com/careers"
     ats: unknown
@@ -1151,9 +1264,10 @@ companies:
     enabled: false
   - name: "Adyen"
     career_url: "https://www.adyen.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "adyen"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Toast"
     career_url: "https://www.toast.com/careers"
     ats: unknown
@@ -1176,9 +1290,14 @@ companies:
     enabled: false
   - name: "FactSet"
     career_url: "https://www.factset.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "factset"
+    config:
+      host: "factset.wd108.myworkdayjobs.com"
+      site: "FactSetCareers"
+      tenant: "factset"
     tier: target
-    enabled: false
+    enabled: true
   - name: "S&P Global"
     career_url: "https://www.sandpglobal.com/careers"
     ats: unknown
@@ -1187,17 +1306,18 @@ companies:
   - name: "Moody's"
     career_url: "https://www.moodys.com/careers"
     ats: successfactors
-    tier: target
-    enabled: true
     config:
       base_url: "https://careers.moodys.com"
       search_prefix: "/en/search-jobs"
       organization_id: "49841"
+    tier: target
+    enabled: true
   - name: "Jane Street"
     career_url: "https://www.janestreet.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "janestreet"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Hudson River Trading"
     career_url: "https://www.hudsonrivertrading.com/careers"
     ats: greenhouse
@@ -1226,9 +1346,10 @@ companies:
     enabled: false
   - name: "Jump Trading"
     career_url: "https://www.jumptrading.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "jumptrading"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Optiver"
     career_url: "https://www.optiver.com/careers"
     ats: unknown
@@ -1236,9 +1357,10 @@ companies:
     enabled: false
   - name: "IMC Trading"
     career_url: "https://www.imctrading.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "imc"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "DRW"
     career_url: "https://www.drw.com/careers"
     ats: unknown
@@ -1246,9 +1368,10 @@ companies:
     enabled: false
   - name: "Akuna Capital"
     career_url: "https://www.akunacapital.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "akunacapital"
     tier: target
-    enabled: false
+    enabled: true
   - name: "SIG"
     career_url: "https://www.sig.com/careers"
     ats: unknown
@@ -1267,9 +1390,10 @@ companies:
     enabled: false
   - name: "Virtu Financial"
     career_url: "https://www.virtufinancial.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "virtu"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Aquatic Capital Management"
     career_url: "https://www.aquaticcapitalmanagement.com/careers"
     ats: unknown
@@ -1298,14 +1422,16 @@ companies:
     enabled: false
   - name: "Voleon"
     career_url: "https://www.voleon.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "voleon"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Point72"
     career_url: "https://www.point72.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "point72"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Millennium Management"
     career_url: "https://www.millenniummanagement.com/careers"
     ats: unknown
@@ -1313,9 +1439,10 @@ companies:
     enabled: false
   - name: "AQR Capital Management"
     career_url: "https://www.aqrcapitalmanagement.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "aqr"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Bridgewater Associates"
     career_url: "https://www.bridgewaterassociates.com/careers"
     ats: unknown
@@ -1332,9 +1459,9 @@ companies:
     ats: workday
     ats_identifier: "crowdstrike"
     config:
-      host: crowdstrike.wd5.myworkdayjobs.com
-      tenant: crowdstrike
-      site: crowdstrikecareers
+      host: "crowdstrike.wd5.myworkdayjobs.com"
+      tenant: "crowdstrike"
+      site: "crowdstrikecareers"
     tier: target
     enabled: true
   - name: "Palo Alto Networks"
@@ -1342,9 +1469,9 @@ companies:
     ats: workday
     ats_identifier: "paloaltonetworks"
     config:
-      host: paloaltonetworks.wd5.myworkdayjobs.com
-      tenant: paloaltonetworks
-      site: panwexternalcareers
+      host: "paloaltonetworks.wd5.myworkdayjobs.com"
+      tenant: "paloaltonetworks"
+      site: "panwexternalcareers"
     tier: target
     enabled: true
   - name: "Zscaler"
@@ -1369,14 +1496,20 @@ companies:
     enabled: false
   - name: "Wiz"
     career_url: "https://www.wiz.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "wizinc"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Snyk"
     career_url: "https://www.snyk.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "snyk"
+    config:
+      host: "snyk.wd103.myworkdayjobs.com"
+      tenant: "snyk"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Tanium"
     career_url: "https://www.tanium.com/careers"
     ats: greenhouse
@@ -1399,24 +1532,25 @@ companies:
     ats: workday
     ats_identifier: "proofpoint"
     config:
-      host: proofpoint.wd5.myworkdayjobs.com
-      tenant: proofpoint
-      site: proofpointcareers
+      host: "proofpoint.wd5.myworkdayjobs.com"
+      tenant: "proofpoint"
+      site: "proofpointcareers"
     tier: target
     enabled: true
   - name: "Abnormal Security"
     career_url: "https://www.abnormalsecurity.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "abnormalsecurity"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Arctic Wolf"
     career_url: "https://www.arcticwolf.com/careers"
     ats: workday
     ats_identifier: "arcticwolf"
     config:
-      host: arcticwolf.wd1.myworkdayjobs.com
-      tenant: arcticwolf
-      site: External
+      host: "arcticwolf.wd1.myworkdayjobs.com"
+      tenant: "arcticwolf"
+      site: "External"
     tier: target
     enabled: true
   - name: "Huntress"
@@ -1438,34 +1572,40 @@ companies:
     enabled: false
   - name: "Netskope"
     career_url: "https://www.netskope.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "netskope"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Illumio"
     career_url: "https://www.illumio.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "illumio"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Rubrik"
     career_url: "https://www.rubrik.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "rubrik"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Vanta"
     career_url: "https://www.vanta.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "vanta"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Drata"
     career_url: "https://www.drata.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "drata"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Chainguard"
     career_url: "https://www.chainguard.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "chainguard"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Akamai"
     career_url: "https://www.akamai.com/careers"
     ats: unknown
@@ -1473,24 +1613,30 @@ companies:
     enabled: false
   - name: "Fastly"
     career_url: "https://www.fastly.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "fastly"
     tier: target
-    enabled: false
+    enabled: true
   - name: "F5"
     career_url: "https://www.f5.com/careers"
     ats: workday
     ats_identifier: "ffive"
     config:
-      host: ffive.wd5.myworkdayjobs.com
-      tenant: ffive
-      site: f5jobs
+      host: "ffive.wd5.myworkdayjobs.com"
+      tenant: "ffive"
+      site: "f5jobs"
     tier: target
     enabled: true
   - name: "McKesson"
     career_url: "https://www.mckesson.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "mckesson"
+    config:
+      host: "mckesson.wd3.myworkdayjobs.com"
+      tenant: "mckesson"
+      site: "External_Careers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "UnitedHealth Group"
     career_url: "https://www.unitedhealthgroup.com/careers"
     ats: unknown
@@ -1503,14 +1649,24 @@ companies:
     enabled: false
   - name: "Humana"
     career_url: "https://www.humana.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "humana"
+    config:
+      host: "humana.wd5.myworkdayjobs.com"
+      tenant: "humana"
+      site: "Humana_External_Career_Site"
     tier: baseline
-    enabled: false
+    enabled: true
   - name: "CVS Health"
     career_url: "https://www.cvshealth.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "cvshealth"
+    config:
+      host: "cvshealth.wd1.myworkdayjobs.com"
+      site: "CVS_Health_Careers"
+      tenant: "cvshealth"
     tier: baseline
-    enabled: false
+    enabled: true
   - name: "Elevance Health"
     career_url: "https://www.elevancehealth.com/careers"
     ats: unknown
@@ -1521,9 +1677,9 @@ companies:
     ats: workday
     ats_identifier: "cigna"
     config:
-      host: cigna.wd5.myworkdayjobs.com
-      tenant: cigna
-      site: cignacareers
+      host: "cigna.wd5.myworkdayjobs.com"
+      tenant: "cigna"
+      site: "cignacareers"
     tier: target
     enabled: true
   - name: "Centene"
@@ -1543,19 +1699,22 @@ companies:
     enabled: false
   - name: "Veeva Systems"
     career_url: "https://www.veevasystems.com/careers"
-    ats: unknown
+    ats: lever
+    ats_identifier: "veeva"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Doximity"
     career_url: "https://www.doximity.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "doximity"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Oscar Health"
     career_url: "https://www.oscarhealth.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "oscar"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Ro"
     career_url: "https://www.ro.com/careers"
     ats: unknown
@@ -1568,22 +1727,28 @@ companies:
     enabled: false
   - name: "Tempus AI"
     career_url: "https://www.tempusai.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "tempus"
+    config:
+      host: "tempus.wd5.myworkdayjobs.com"
+      tenant: "tempus"
+      site: "Tempus_Careers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Flatiron Health"
     career_url: "https://www.flatironhealth.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "flatironhealth"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Verily"
     career_url: "https://www.verily.com/careers"
     ats: workday
     ats_identifier: "verily"
     config:
-      host: verily.wd1.myworkdayjobs.com
-      tenant: verily
-      site: Verily_Careers
+      host: "verily.wd1.myworkdayjobs.com"
+      tenant: "verily"
+      site: "Verily_Careers"
     tier: target
     enabled: true
   - name: "Moderna"
@@ -1596,9 +1761,9 @@ companies:
     ats: workday
     ats_identifier: "illumina"
     config:
-      host: illumina.wd1.myworkdayjobs.com
-      tenant: illumina
-      site: illumina-careers
+      host: "illumina.wd1.myworkdayjobs.com"
+      tenant: "illumina"
+      site: "illumina-careers"
     tier: target
     enabled: true
   - name: "Guardant Health"
@@ -1617,16 +1782,21 @@ companies:
     ats: workday
     ats_identifier: "medtronic"
     config:
-      host: medtronic.wd1.myworkdayjobs.com
-      tenant: medtronic
-      site: MedtronicCareers
+      host: "medtronic.wd1.myworkdayjobs.com"
+      tenant: "medtronic"
+      site: "MedtronicCareers"
     tier: target
     enabled: true
   - name: "Stryker"
     career_url: "https://www.stryker.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "stryker"
+    config:
+      host: "stryker.wd1.myworkdayjobs.com"
+      tenant: "stryker"
+      site: "strykercareers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Boston Scientific"
     career_url: "https://www.bostonscientific.com/careers"
     ats: unknown
@@ -1639,9 +1809,10 @@ companies:
     enabled: false
   - name: "Intuitive Surgical"
     career_url: "https://www.intuitivesurgical.com/careers"
-    ats: unknown
+    ats: smartrecruiters
+    ats_identifier: "intuitive"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Walmart"
     career_url: "https://www.walmart.com/careers"
     ats: unknown
@@ -1649,9 +1820,14 @@ companies:
     enabled: false
   - name: "Target"
     career_url: "https://www.target.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "target"
+    config:
+      host: "target.wd5.myworkdayjobs.com"
+      tenant: "target"
+      site: "targetcareers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Costco"
     career_url: "https://www.costco.com/careers"
     ats: unknown
@@ -1684,9 +1860,14 @@ companies:
     enabled: false
   - name: "Chipotle"
     career_url: "https://www.chipotle.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "chipotle"
+    config:
+      host: "chipotle.wd5.myworkdayjobs.com"
+      tenant: "chipotle"
+      site: "chipotlecareers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Yum Brands"
     career_url: "https://www.yumbrands.com/careers"
     ats: unknown
@@ -1722,9 +1903,9 @@ companies:
     ats: workday
     ats_identifier: "comcast"
     config:
-      host: comcast.wd115.myworkdayjobs.com
-      tenant: comcast
-      site: Comcast_Careers
+      host: "comcast.wd115.myworkdayjobs.com"
+      tenant: "comcast"
+      site: "Comcast_Careers"
     tier: target
     enabled: true
   - name: "Paramount"
@@ -1734,17 +1915,18 @@ companies:
     enabled: false
   - name: "The New York Times"
     career_url: "https://www.thenewyorktimes.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "thenewyorktimes"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Thomson Reuters"
     career_url: "https://www.thomsonreuters.com/careers"
     ats: workday
     ats_identifier: "thomsonreuters"
     config:
-      host: thomsonreuters.wd5.myworkdayjobs.com
-      tenant: thomsonreuters
-      site: External_Career_Site
+      host: "thomsonreuters.wd5.myworkdayjobs.com"
+      tenant: "thomsonreuters"
+      site: "External_Career_Site"
     tier: target
     enabled: true
   - name: "Expedia"
@@ -1759,9 +1941,10 @@ companies:
     enabled: false
   - name: "Tripadvisor"
     career_url: "https://www.tripadvisor.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "tripadvisor"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Marriott"
     career_url: "https://www.marriott.com/careers"
     ats: unknown
@@ -1812,9 +1995,9 @@ companies:
     ats: workday
     ats_identifier: "autodesk"
     config:
-      host: autodesk.wd1.myworkdayjobs.com
-      tenant: autodesk
-      site: Ext
+      host: "autodesk.wd1.myworkdayjobs.com"
+      tenant: "autodesk"
+      site: "Ext"
     tier: target
     enabled: true
   - name: "Bentley Systems"
@@ -1824,17 +2007,22 @@ companies:
     enabled: false
   - name: "Trimble"
     career_url: "https://www.trimble.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "trimble"
+    config:
+      host: "trimble.wd1.myworkdayjobs.com"
+      tenant: "trimble"
+      site: "trimblecareers"
     tier: target
-    enabled: false
+    enabled: true
   - name: "PTC"
     career_url: "https://www.ptc.com/careers"
     ats: workday
     ats_identifier: "ptc"
     config:
-      host: ptc.wd1.myworkdayjobs.com
-      tenant: ptc
-      site: PTC
+      host: "ptc.wd1.myworkdayjobs.com"
+      tenant: "ptc"
+      site: "PTC"
     tier: target
     enabled: true
   - name: "Ansys"
@@ -1859,9 +2047,14 @@ companies:
     enabled: false
   - name: "Alteryx"
     career_url: "https://www.alteryx.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "alteryx"
+    config:
+      host: "alteryx.wd108.myworkdayjobs.com"
+      site: "AlteryxCareers"
+      tenant: "alteryx"
     tier: target
-    enabled: false
+    enabled: true
   - name: "UiPath"
     career_url: "https://www.uipath.com/careers"
     ats: ashby
@@ -1875,34 +2068,38 @@ companies:
     enabled: false
   - name: "Celonis"
     career_url: "https://www.celonis.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "celonis"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Databricks"
     career_url: "https://www.databricks.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "databricks"
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Cloudera"
     career_url: "https://www.cloudera.com/careers"
     ats: workday
     ats_identifier: "cloudera"
     config:
-      host: cloudera.wd5.myworkdayjobs.com
-      tenant: cloudera
-      site: External_Career
+      host: "cloudera.wd5.myworkdayjobs.com"
+      tenant: "cloudera"
+      site: "External_Career"
     tier: target
     enabled: true
   - name: "Cockroach Labs"
     career_url: "https://www.cockroachlabs.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "cockroachlabs"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Redis"
     career_url: "https://www.redis.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "redis"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Neo4j"
     career_url: "https://www.neo4j.com/careers"
     ats: greenhouse
@@ -1911,9 +2108,10 @@ companies:
     enabled: true
   - name: "SingleStore"
     career_url: "https://www.singlestore.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "singlestore"
     tier: target
-    enabled: false
+    enabled: true
   - name: "PlanetScale"
     career_url: "https://www.planetscale.com/careers"
     ats: greenhouse
@@ -1928,17 +2126,14 @@ companies:
     enabled: true
   - name: "Postman"
     career_url: "https://www.postman.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "postman"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Sentry"
     career_url: "https://www.sentry.com/careers"
-    ats: workday
-    ats_identifier: "sentryinsurance"
-    config:
-      host: sentryinsurance.wd1.myworkdayjobs.com
-      tenant: sentryinsurance
-      site: SentryCareers
+    ats: ashby
+    ats_identifier: "sentry"
     tier: target
     enabled: true
   - name: "Grafana Labs"
@@ -1949,9 +2144,10 @@ companies:
     enabled: true
   - name: "New Relic"
     career_url: "https://www.newrelic.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "newrelic"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Dynatrace"
     career_url: "https://www.dynatrace.com/careers"
     ats: unknown
@@ -1964,14 +2160,16 @@ companies:
     enabled: false
   - name: "Sumo Logic"
     career_url: "https://www.sumologic.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "sumologic"
     tier: target
-    enabled: false
+    enabled: true
   - name: "PagerDuty"
     career_url: "https://www.pagerduty.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "pagerduty"
     tier: target
-    enabled: false
+    enabled: true
   - name: "LaunchDarkly"
     career_url: "https://www.launchdarkly.com/careers"
     ats: greenhouse
@@ -1985,19 +2183,22 @@ companies:
     enabled: false
   - name: "Docker"
     career_url: "https://www.docker.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "docker"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Kong"
     career_url: "https://www.kong.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "kong"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Tailscale"
     career_url: "https://www.tailscale.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "tailscale"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Netlify"
     career_url: "https://www.netlify.com/careers"
     ats: greenhouse
@@ -2016,9 +2217,14 @@ companies:
     enabled: false
   - name: "Equinix"
     career_url: "https://www.equinix.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "equinix"
+    config:
+      host: "equinix.wd1.myworkdayjobs.com"
+      tenant: "equinix"
+      site: "External"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Pure Storage"
     career_url: "https://www.purestorage.com/careers"
     ats: unknown
@@ -2027,12 +2233,12 @@ companies:
   - name: "NetApp"
     career_url: "https://www.netapp.com/careers"
     ats: successfactors
-    tier: target
-    enabled: true
     config:
       base_url: "https://careers.netapp.com"
       search_prefix: "/search-jobs"
       organization_id: "27600"
+    tier: target
+    enabled: true
   - name: "Nutanix"
     career_url: "https://www.nutanix.com/careers"
     ats: unknown
@@ -2060,14 +2266,16 @@ companies:
     enabled: false
   - name: "Gusto"
     career_url: "https://www.gusto.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "gusto"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Carta"
     career_url: "https://www.carta.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "carta"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Mercury"
     career_url: "https://www.mercury.com/careers"
     ats: greenhouse
@@ -2081,14 +2289,16 @@ companies:
     enabled: false
   - name: "Lattice"
     career_url: "https://www.lattice.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "lattice"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Greenhouse Software"
     career_url: "https://www.greenhousesoftware.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "greenhouse"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Lever"
     career_url: "https://www.lever.com/careers"
     ats: unknown
@@ -2096,9 +2306,10 @@ companies:
     enabled: false
   - name: "Ashby"
     career_url: "https://www.ashby.com/careers"
-    ats: unknown
+    ats: ashby
+    ats_identifier: "ashby"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Ripcord"
     career_url: "https://www.ripcord.com/careers"
     ats: unknown
@@ -2119,9 +2330,9 @@ companies:
     ats: workday
     ats_identifier: "kcura"
     config:
-      host: kcura.wd1.myworkdayjobs.com
-      tenant: kcura
-      site: External_Career_Site
+      host: "kcura.wd1.myworkdayjobs.com"
+      tenant: "kcura"
+      site: "External_Career_Site"
     tier: target
     enabled: true
   - name: "Qualtrics"
@@ -2131,24 +2342,26 @@ companies:
     enabled: false
   - name: "Sprout Social"
     career_url: "https://www.sproutsocial.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "sproutsocial"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Yext"
     career_url: "https://www.yext.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "yext"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Zillow"
     career_url: "https://www.zillow.com/careers"
     ats: workday
     ats_identifier: "zillow"
-    tier: target
-    enabled: true
     config:
       host: "zillow.wd5.myworkdayjobs.com"
       tenant: "zillow"
       site: "Zillow_Group_External"
+    tier: target
+    enabled: true
   - name: "Redfin"
     career_url: "https://www.redfin.com/careers"
     ats: unknown
@@ -2166,9 +2379,10 @@ companies:
     enabled: false
   - name: "Flexport"
     career_url: "https://www.flexport.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "flexport"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Convoy"
     career_url: "https://www.convoy.com/careers"
     ats: unknown
@@ -2185,26 +2399,29 @@ companies:
     ats: workday
     ats_identifier: "luminegrp"
     config:
-      host: luminegrp.wd3.myworkdayjobs.com
-      tenant: luminegrp
-      site: Motive
+      host: "luminegrp.wd3.myworkdayjobs.com"
+      tenant: "luminegrp"
+      site: "Motive"
     tier: target
     enabled: true
   - name: "Geotab"
     career_url: "https://www.geotab.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "geotab"
     tier: target
-    enabled: false
+    enabled: true
   - name: "FourKites"
     career_url: "https://www.fourkites.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "fourkites"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Project44"
     career_url: "https://www.project44.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "project44"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Zipline"
     career_url: "https://www.zipline.com/careers"
     ats: unknown
@@ -2212,14 +2429,20 @@ companies:
     enabled: false
   - name: "Gopuff"
     career_url: "https://www.gopuff.com/careers"
-    ats: unknown
+    ats: lever
+    ats_identifier: "gopuff"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Grubhub"
     career_url: "https://www.grubhub.com/careers"
-    ats: unknown
+    ats: workday
+    ats_identifier: "wonder"
+    config:
+      host: "wonder.wd1.myworkdayjobs.com"
+      site: "Grubhub_Careers"
+      tenant: "wonder"
     tier: target
-    enabled: false
+    enabled: true
   - name: "StubHub"
     career_url: "https://www.stubhub.com/careers"
     ats: greenhouse
@@ -2228,14 +2451,16 @@ companies:
     enabled: true
   - name: "SeatGeek"
     career_url: "https://www.seatgeek.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "seatgeek"
     tier: target
-    enabled: false
+    enabled: true
   - name: "FanDuel"
     career_url: "https://www.fanduel.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "fanduel"
     tier: target
-    enabled: false
+    enabled: true
   - name: "DraftKings"
     career_url: "https://www.draftkings.com/careers"
     ats: unknown
@@ -2243,9 +2468,10 @@ companies:
     enabled: false
   - name: "The Trade Desk"
     career_url: "https://www.thetradedesk.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "thetradedesk"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Magnite"
     career_url: "https://www.magnite.com/careers"
     ats: unknown
@@ -2253,11 +2479,13 @@ companies:
     enabled: false
   - name: "AppLovin"
     career_url: "https://www.applovin.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "applovin"
     tier: target
-    enabled: false
+    enabled: true
   - name: "Roku"
     career_url: "https://www.roku.com/careers"
-    ats: unknown
+    ats: greenhouse
+    ats_identifier: "roku"
     tier: target
-    enabled: false
+    enabled: true
