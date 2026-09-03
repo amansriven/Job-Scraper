@@ -2,7 +2,7 @@ name: Internship monitor
 
 on:
   schedule:
-    - cron: "7,37 * * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -24,8 +24,8 @@ jobs:
       HTTP_RETRIES: "3"
       MINIMUM_TIER: baseline
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip

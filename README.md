@@ -20,7 +20,7 @@ Set `DISCORD_WEBHOOK_URL`, then schedule `python -m app.main` every 30–60 minu
 
 ## GitHub Actions with Neon
 
-The workflow in `.github/workflows/monitor.yml` runs at minutes 7 and 37 of every hour. The offset avoids the busiest top-of-hour scheduling window. Create a Neon PostgreSQL project, then add these repository secrets under **Settings → Secrets and variables → Actions**:
+The workflow in `.github/workflows/monitor.yml` runs hourly at minute 17. The offset avoids the busiest top-of-hour scheduling window, and the hourly cadence keeps a private repository comfortably within typical free Actions-minute allowances. Create a Neon PostgreSQL project, then add these repository secrets under **Settings → Secrets and variables → Actions**:
 
 - `DATABASE_URL`: Neon’s pooled connection string, including `sslmode=require`
 - `DISCORD_WEBHOOK_URL`: your Discord channel webhook URL
