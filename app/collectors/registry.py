@@ -5,12 +5,14 @@ from app.collectors.jibe import JibeCollector
 from app.collectors.jobs2web import Jobs2WebCollector
 from app.collectors.lever import LeverCollector
 from app.collectors.smartrecruiters import SmartRecruitersCollector
+from app.collectors.simplify import SimplifyCollector
 from app.collectors.workday import WorkdayCollector
 
 COLLECTORS = {
     "greenhouse": GreenhouseCollector, "lever": LeverCollector, "ashby": AshbyCollector,
     "workday": WorkdayCollector, "smartrecruiters": SmartRecruitersCollector, "jibe": JibeCollector,
     "successfactors": Jobs2WebCollector,
+    "simplify": SimplifyCollector,
     "generic": GenericCollector, "custom": GenericCollector,
 }
 

@@ -1,6 +1,15 @@
 # Registry policy: enabled entries have a configured structured collector.
 # Disabled entries are reputable seed candidates awaiting ATS verification via scripts/discover_ats.py.
 companies:
+  # Broad, machine-readable coverage layer. Direct ATS entries below remain the
+  # authoritative fallback and fingerprint deduplication prevents double alerts.
+  - name: "Simplify + Pitt CSC Internship Feed"
+    career_url: "https://github.com/SimplifyJobs/Summer2027-Internships"
+    ats: simplify
+    tier: baseline
+    enabled: true
+    config:
+      lookback_hours: 72
   - name: "Google"
     career_url: "https://www.google.com/careers"
     ats: unknown

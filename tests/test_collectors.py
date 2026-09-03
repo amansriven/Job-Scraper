@@ -3,6 +3,7 @@ import pytest
 
 from app.collectors.greenhouse import GreenhouseCollector
 from app.collectors.jibe import JibeCollector
+from app.collectors.simplify import SimplifyCollector
 from app.collectors.workday import WorkdayCollector
 from app.models import Company
 
@@ -70,3 +71,25 @@ async def test_jibe_normalizes_and_filters_titles():
     jobs = await JibeCollector(FakeJibeHttp()).fetch_jobs(company)
     assert [job.external_id for job in jobs] == ["J1"]
     assert jobs[0].posted_at.isoformat() == "2026-09-03T08:00:00+00:00"
+
+
+class FakeSimplifyHttp:
+    async def get(self, url, **kwargs):
+        now = int(__import__("time").time())
+        return httpx.Response(200, json=[
+            {"id": "S1", "active": True, "is_visible": True, "date_posted": now,
+             "company_name": "Example Corp", "title": "Software Engineer Intern",
+             "locations": ["Chicago, IL"], "url": "https://example.com/jobs/S1",
+             "category": "Software", "terms": ["Summer 2027"], "degrees": ["Bachelor's"]},
+            {"id": "S2", "active": False, "date_posted": now, "company_name": "Closed",
+             "title": "Developer Intern", "locations": ["Austin, TX"], "url": "https://example.com/S2"},
+        ])
+
+
+@pytest.mark.asyncio
+async def test_simplify_keeps_recent_active_roles_and_real_company():
+    company = Company("Aggregate", "https://example.com/feed", "simplify", config={"lookback_hours": 72})
+    jobs = await SimplifyCollector(FakeSimplifyHttp()).fetch_jobs(company)
+    assert len(jobs) == 1
+    assert jobs[0].company == "Example Corp"
+    assert jobs[0].external_id == "S1"
