@@ -9,14 +9,22 @@ companies:
     enabled: false
   - name: "Microsoft"
     career_url: "https://www.microsoft.com/careers"
-    ats: unknown
+    ats: eightfold
+    config:
+      variant: "pcsx"
+      base_url: "https://apply.careers.microsoft.com"
+      domain: "microsoft.com"
+      search_terms: ["intern"]
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Apple"
-    career_url: "https://www.apple.com/careers"
-    ats: unknown
+    career_url: "https://jobs.apple.com"
+    ats: apple
+    config:
+      search_terms: ["intern", "co-op"]
+      max_pages_per_term: 40
     tier: elite
-    enabled: false
+    enabled: true
   - name: "Amazon"
     career_url: "https://www.amazon.jobs/en/search"
     ats: amazon
@@ -32,10 +40,14 @@ companies:
     enabled: false
   - name: "Netflix"
     career_url: "https://jobs.netflix.com/"
-    ats: lever
-    ats_identifier: "netflix"
+    ats: eightfold
+    config:
+      variant: "apply_v2"
+      base_url: "https://explore.jobs.netflix.net"
+      domain: "netflix.com"
+      search_terms: ["intern"]
     tier: elite
-    enabled: false
+    enabled: true
   - name: "NVIDIA"
     career_url: "https://www.nvidia.com/careers"
     ats: workday

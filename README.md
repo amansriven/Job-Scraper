@@ -76,6 +76,8 @@ For custom sites, use `ats: generic` with `config.job_selector`, `title_selector
 
 Workday entries also need `config.host`, `config.tenant`, and `config.site`; Workday tenants vary by cluster. SmartRecruiters, Ashby, Lever, and Greenhouse use `ats_identifier` as their tenant/board slug. iCIMS and SuccessFactors are detected by discovery but intentionally require a custom adapter because public endpoints and tenant configuration vary substantially. Companies with a fully custom career API (no third-party ATS) need a dedicated collector, e.g. `app/collectors/amazon.py`.
 
+Some large companies run on the Eightfold.ai talent platform (Microsoft, Netflix), which exposes a public search + detail JSON API but ships at least two incompatible URL/response shapes across customers (`app/collectors/eightfold.py`, `ats: eightfold`, `config.variant: "pcsx" | "apply_v2"`). Finding one on a new company means opening its careers page in a real browser, searching a term, and reading the resulting XHR request/response shape from devtools; neither shape is discoverable by the plain-HTTP crawler in `discover_ats.py`.
+
 ## Matching and safety
 
 Eligibility requires student/internship evidence, software/ML/infrastructure/security/data engineering evidence, and a U.S. or explicitly U.S.-remote location. Graduate-only, senior, obvious business, support, sales, and non-U.S. roles are rejected. Ambiguous titles such as “Technology Summer Analyst” must have technical evidence in their descriptions.

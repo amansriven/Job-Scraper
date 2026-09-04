@@ -13,7 +13,7 @@ from pathlib import Path
 import yaml
 
 CONFIGURED = {"greenhouse", "lever", "ashby", "workday", "smartrecruiters",
-              "jibe", "successfactors", "amazon"}
+              "jibe", "successfactors", "amazon", "eightfold"}
 
 
 def render(companies: list[dict]) -> str:

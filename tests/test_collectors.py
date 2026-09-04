@@ -2,6 +2,8 @@ import httpx
 import pytest
 
 from app.collectors.amazon import AmazonCollector, parse_amazon_date
+from app.collectors.apple import AppleCollector, parse_apple_date
+from app.collectors.eightfold import EightfoldCollector
 from app.collectors.greenhouse import GreenhouseCollector
 from app.collectors.jibe import JibeCollector
 from app.collectors.workday import WorkdayCollector
@@ -104,3 +106,79 @@ async def test_amazon_normalizes_postings_and_dates():
 def test_amazon_rejects_unparseable_dates():
     assert parse_amazon_date("not a date") is None
     assert parse_amazon_date(None) is None
+
+
+class FakeEightfoldHttp:
+    def __init__(self, variant):
+        self.variant = variant
+
+    async def get(self, url, **kwargs):
+        if self.variant == "pcsx":
+            if "position_details" in url:
+                return httpx.Response(200, json={"data": {"jobDescription": "Build the future."}})
+            return httpx.Response(200, json={"data": {"positions": [{
+                "id": 42, "name": "Software Engineer Intern", "standardizedLocations": ["Redmond, WA, US"],
+                "postedTs": 1780000000, "positionUrl": "/careers/job/42"}], "count": 1}})
+        if "/jobs/42" in url:
+            return httpx.Response(200, json={"job_description": "Entertain the world.",
+                                             "canonicalPositionUrl": "https://x/careers/job/42"})
+        return httpx.Response(200, json={"positions": [{
+            "id": 42, "name": "Software Engineer Intern", "location": "Los Gatos, CA, US",
+            "t_create": 1780000000}], "count": 1})
+
+
+@pytest.mark.asyncio
+async def test_eightfold_pcsx_variant():
+    company = Company("Microsoft", "https://careers.microsoft.com", "eightfold", config={
+        "variant": "pcsx", "base_url": "https://apply.careers.microsoft.com", "domain": "microsoft.com",
+        "search_terms": ["intern"]})
+    jobs = await EightfoldCollector(FakeEightfoldHttp("pcsx")).fetch_jobs(company)
+    assert len(jobs) == 1
+    assert jobs[0].description == "Build the future."
+    assert jobs[0].apply_url == "https://apply.careers.microsoft.com/careers/job/42"
+
+
+@pytest.mark.asyncio
+async def test_eightfold_apply_v2_variant():
+    company = Company("Netflix", "https://jobs.netflix.com", "eightfold", config={
+        "variant": "apply_v2", "base_url": "https://explore.jobs.netflix.net", "domain": "netflix.com",
+        "search_terms": ["intern"]})
+    jobs = await EightfoldCollector(FakeEightfoldHttp("apply_v2")).fetch_jobs(company)
+    assert len(jobs) == 1
+    assert jobs[0].description == "Entertain the world."
+    assert jobs[0].apply_url == "https://x/careers/job/42"
+
+
+class FakeAppleHttp:
+    async def get(self, url, **kwargs):
+        if "page=2" in url:
+            return httpx.Response(200, text="<div></div>", request=httpx.Request("GET", url))
+        html = """
+        <div class="job-list-item">
+          <div class="job-title-link"><a href="/en-us/details/200999-1/software-engineering-intern">Software Engineering Intern</a></div>
+          <span class="job-posted-date">Sep 03, 2026</span>
+          <div class="job-title-location"><span class="a11y">Location</span><span>Cupertino</span></div>
+        </div>
+        <div class="job-list-item">
+          <div class="job-title-link"><a href="/en-us/details/200999-2/international-sales-manager">International Sales Manager</a></div>
+          <span class="job-posted-date">Sep 03, 2026</span>
+          <div class="job-title-location"><span class="a11y">Location</span><span>London</span></div>
+        </div>
+        """
+        return httpx.Response(200, text=html, request=httpx.Request("GET", url))
+
+
+@pytest.mark.asyncio
+async def test_apple_filters_title_and_skips_empty_page():
+    company = Company("Apple", "https://jobs.apple.com", "apple", config={
+        "search_terms": ["intern"], "max_pages_per_term": 3})
+    jobs = await AppleCollector(FakeAppleHttp()).fetch_jobs(company)
+    assert len(jobs) == 1
+    assert jobs[0].title == "Software Engineering Intern"
+    assert jobs[0].location == "Cupertino"
+    assert jobs[0].apply_url == "https://jobs.apple.com/en-us/details/200999-1/software-engineering-intern"
+
+
+def test_apple_rejects_unparseable_dates():
+    assert parse_apple_date("not a date") is None
+    assert parse_apple_date(None) is None

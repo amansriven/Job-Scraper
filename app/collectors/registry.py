@@ -1,5 +1,7 @@
 from app.collectors.amazon import AmazonCollector
+from app.collectors.apple import AppleCollector
 from app.collectors.ashby import AshbyCollector
+from app.collectors.eightfold import EightfoldCollector
 from app.collectors.generic import GenericCollector
 from app.collectors.greenhouse import GreenhouseCollector
 from app.collectors.jibe import JibeCollector
@@ -11,7 +13,8 @@ from app.collectors.workday import WorkdayCollector
 COLLECTORS = {
     "greenhouse": GreenhouseCollector, "lever": LeverCollector, "ashby": AshbyCollector,
     "workday": WorkdayCollector, "smartrecruiters": SmartRecruitersCollector, "jibe": JibeCollector,
-    "successfactors": Jobs2WebCollector, "amazon": AmazonCollector,
+    "successfactors": Jobs2WebCollector, "amazon": AmazonCollector, "eightfold": EightfoldCollector,
+    "apple": AppleCollector,
     "generic": GenericCollector, "custom": GenericCollector,
 }
 
